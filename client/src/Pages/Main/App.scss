@@ -1,0 +1,20 @@
+.empty-space {
+  min-height: 65vh;
+}
+
+.backgroundBlur {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(65, 57, 57, 0.5);
+  height: 28vh;
+
+  .App {
+
+    height: 20vh;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+}

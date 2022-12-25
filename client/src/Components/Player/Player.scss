@@ -1,0 +1,94 @@
+.imgWrapper {
+  position: relative;
+
+  //NUMBERS
+  h4 {
+    position: absolute;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    font-size: x-large;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    top: -7px;
+    left: -7px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  .red {
+    background: red;
+  }
+
+  .black {
+    background: black;
+  }
+
+
+  //ROLES
+  .sheriff {
+    z-index: 2;
+    position: absolute;
+    background: url("sheriff.png") no-repeat;
+    width: 70px;
+    height: 70px;
+    bottom: -15px;
+    left: -25px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  .don {
+    z-index: 2;
+    position: absolute;
+    background: url("don.png") no-repeat;
+    width: 100px;
+    height: 100px;
+    bottom: -35px;
+    left: -15px;
+    filter: drop-shadow(2px 4px 6px black);
+    transform: rotate(8deg);
+
+  }
+
+  .mafia {
+    z-index: 2;
+    position: absolute;
+    bottom: -45px;
+    left: -15px;
+    background: url("mafia.png") no-repeat;
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+
+}
+
+
+.dead {
+  margin-top: 100px;
+  transition: all 500ms;
+
+  & img {
+    filter: grayscale(100%) drop-shadow(2px 4px 6px black);
+  }
+}
+
+.alive {
+  margin-top: 0px;
+  transition: all 500ms;
+
+  & img {
+    filter: drop-shadow(2px 4px 6px black);
+  }
+}
