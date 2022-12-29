@@ -1,2 +1,2 @@
-import MainPageContainer from './MainPageContainer'
-export default MainPageContainer
+import Main from './Main'
+export default Main

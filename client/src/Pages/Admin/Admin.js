@@ -11,8 +11,7 @@ const Admin = () => {
     useEffect(() => {
         if (!state.length) {
             axios
-                // .get('https://mafiapi.sammyshehter.com')
-                .get('http://localhost:4000')
+                .get('http://192.168.2.101:4000')
                 .then((res) => {
                     setState(res.data)
                 })
@@ -24,7 +23,7 @@ const Admin = () => {
 
     useEffect(() => {
         // socketRef.current = io.connect('https://mafiapi.sammyshehter.com')
-        socketRef.current = io.connect('http://localhost:4000')
+        socketRef.current = io.connect('http://192.168.2.101:4000')
         return () => socketRef.current.disconnect()
     })
 

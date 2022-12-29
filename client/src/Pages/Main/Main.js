@@ -3,19 +3,14 @@ import io from 'socket.io-client'
 import axios from 'axios'
 import Player from '../../Components/Player'
 
-function Main(props) {
+function Main() {
     const socketRef = useRef()
     const [state, setState] = useState([])
-
-    useEffect(()=>{
-        props.loadUser()
-    },[])
 
     useEffect(() => {
         if (!state.length) {
             axios
-                // .get('https://mafiapi.sammyshehter.com')
-                .get('http://localhost:4000')
+                .get('http://192.168.2.101:4000')
                 .then((res) => {
                     setState(res.data)
                 })
@@ -26,8 +21,7 @@ function Main(props) {
     }, [state.length])
 
     useEffect(() => {
-        // socketRef.current = io.connect("https://mafiapi.sammyshehter.com")
-        socketRef.current = io.connect('http://localhost:4000')
+        socketRef.current = io.connect('http://192.168.2.101:4000')
         socketRef.current.on('players', (array) => {
             setState(array)
         })
