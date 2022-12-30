@@ -3,6 +3,8 @@ const fs = require("fs")
 const logger = require("morgan")
 const cors = require("cors")
 const socketIO = require("socket.io")
+const index = require("./routes/index")
+
 require("dotenv").config()
 
 const app = express()
@@ -10,17 +12,14 @@ const app = express()
 const CLIENT = "*"
 const PORT = 4000
 const NODE_ENV = "development"
+const log = NODE_ENV === "development" ? "dev" : "combined"
 
-const corsOptionsDelegate = (_, callback) => callback(null, {origin: true})
-
-app.use(cors(corsOptionsDelegate))
+app.use(cors({origin: true}))
 app.use(express.json({extended: true, limit: "50mb"}))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
-//logger
-const log = NODE_ENV === "development" ? "dev" : "combined"
 app.use(logger(log))
+app.use(index)
 
 const http = require("http").createServer(app)
 
@@ -31,27 +30,28 @@ const io = socketIO(http, {
     },
 })
 
-const index = require("./routes/index")
-app.use(index)
+const rooms = []
+for (let index = 0; index <= 7; index++) {
+    rooms.push(`room-${index + 1}`)
+}
+const callback = (roomNumber) => (array) => {
+    if (!array.length) {
+        const defaultState = JSON.parse(
+            fs.readFileSync("defaultState.json", "utf8")
+        )
+        return io.emit(`${roomNumber}`, defaultState)
+    } else {
+        fs.writeFileSync(
+            `state-${roomNumber}.json`,
+            JSON.stringify(array),
+            "utf8"
+        )
+        return io.emit(`${roomNumber}`, array)
+    }
+}
 
 io.on("connection", (socket) => {
-    socket.on("players", (array) => {
-        if (!array.length) {
-            fs.readFile("defaultState.json", "utf8", (err, data) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    const state = JSON.parse(data)
-                    return io.emit("players", state)
-                }
-            })
-        } else {
-            fs.writeFile("state.json", JSON.stringify(array), "utf8", () => {
-                console.log("State updated")
-            })
-            return io.emit("players", array)
-        }
-    })
+    rooms.forEach((roomNumber) => socket.on(roomNumber, callback(roomNumber)))
 })
 
 http.listen(PORT, function () {

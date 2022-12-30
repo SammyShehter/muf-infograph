@@ -1,3 +1,13 @@
 body{
     font-family: 'Nunito', sans-serif;
 }
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.direction-col{
+    flex-direction: column;
+}

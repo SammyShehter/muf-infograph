@@ -10,16 +10,6 @@ form {
 
     padding: 2.5vh 0;
 
-    &:first-child {
-      justify-content: center;
-      height: 1vh;
-
-      div {
-        padding-left: 3vw;
-
-      }
-    }
-
     &:nth-child(2n) {
       background: lightblue;
     }
@@ -58,7 +48,7 @@ form {
     color: black;
     text-transform: uppercase;
     padding: 1.25em 2em;
-    background: lightcyan;
+    background: darken(lightcyan, 30%);
     border: 1px solid darkgray;
     border-radius: 0.75em;
 

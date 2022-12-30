@@ -1,8 +1,6 @@
 import React from "react"
 
 const Player = ({info, number}) => {
-
-
     const styleProps = (info) => {
         let styledObj = ''
         for (const prop in info) {
@@ -18,9 +16,9 @@ const Player = ({info, number}) => {
     return (
 
         <div className={`imgWrapper ${info.dead ? 'dead' : 'alive'}`}>
-            <h4 className={info.mafia || info.don ? 'black' : 'red'}>{number}</h4>
-            <div className={styleProps(info)}/>
-            <img src={`./players/${info.player}.jpg`} alt={'k'}/>
+            <h4 className={info.roles.mafia || info.roles.don ? 'black' : 'red'}>{number}</h4>
+            <div className={styleProps(info.roles)}/>
+            <img src={`http://localhost:4000/players/image/${info.player}`} alt={'k'}/>
         </div>
 
     )

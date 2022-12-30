@@ -8,10 +8,8 @@ const App = () => {
     return (
         <Router>
             <Switch>
-                <Route path="/" component={Main} exact />
-                <Route path="/admin" exact>
-                    <Admin />
-                </Route>
+                <Route path="/room/:id" component={Main} exact />
+                <Route path="/room/admin/:id" component={Admin} exact />
             </Switch>
         </Router>
     )

@@ -1,16 +1,46 @@
-const express = require('express')
+const express = require("express")
 const router = express.Router()
-const fs = require('fs')
+const fs = require("fs")
+let players = JSON.parse(
+    fs.readFileSync(`${process.cwd()}/players.all.json`).toString()
+)
 
-router.get('/', (req, res) => {
-    fs.readFile('state.json', 'utf8', (err, data) => {
-        if (err) {
-            res.status(400).send(err)
-        } else {
-            const state = JSON.parse(data)
-            res.status(200).send(state)
-        }
-    })
+// router.post("/players/add", (req, res) => {
+//     const image = ''
+//     const playerData = ''
+
+//     // upload photo
+
+//     // upload player data
+//     res.json({status: "SUCCESS", data: "Player added successfully"})
+// })
+
+router.get("/players/all", async (req, res) => {
+    try {
+        res.json(players)
+    } catch (error) {
+        res.send("Error")
+    }
+})
+
+router.get("/players/image/:player", (req, res) => {
+    try {
+        const {player} = req.params
+        res.sendFile(`${process.cwd()}/players/${player}.jpg`)
+    } catch (error) {
+        res.send("Error")
+    }
+})
+
+router.get("/room/:id", (req, res) => {
+    try {
+        const {id} = req.params
+        const fileName = id ? `state-room-${id}.json` : "defaultState.json"
+        const state = JSON.parse(fs.readFileSync(fileName, "utf8"))
+        res.status(200).send(state)
+    } catch (error) {
+        res.status(400).send("Error")
+    }
 })
 
 module.exports = router
