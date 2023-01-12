@@ -1,4 +1,4 @@
-form {
+.form {
   display: flex;
   flex-direction: column;
   width: 50vw;
@@ -60,7 +60,7 @@ form {
 }
 
 @include media('<=desktop') {
-  form {
+  .form {
     width: 100%;
     position: relative;
     font-size: x-large;

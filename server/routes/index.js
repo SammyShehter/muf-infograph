@@ -1,19 +1,30 @@
 const express = require("express")
-const router = express.Router()
+const multer = require("multer")
 const fs = require("fs")
+
+const router = express.Router()
+const upload = multer({dest: "uploads/"})
+const cpUpload = upload.fields([
+    {name: "player.image", maxCount: 1},
+    {name: "player.code"},
+    {name: "player.name"},
+])
+
 let players = JSON.parse(
     fs.readFileSync(`${process.cwd()}/players.all.json`).toString()
 )
 
-// router.post("/players/add", (req, res) => {
-//     const image = ''
-//     const playerData = ''
 
-//     // upload photo
 
-//     // upload player data
-//     res.json({status: "SUCCESS", data: "Player added successfully"})
-// })
+router.post("/players/add", cpUpload, (req, res) => {
+    const image = ""
+    const playerData = ""
+
+    // upload photo
+    console.log({...req.body})
+    // upload player data
+    res.json({status: "SUCCESS", data: "Player added successfully"})
+})
 
 router.get("/players/all", async (req, res) => {
     try {

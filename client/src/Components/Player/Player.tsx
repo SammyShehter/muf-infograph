@@ -1,7 +1,8 @@
 import React from "react"
+import { URL } from "../../Utils/global.util"
 
-const Player = ({info, number}) => {
-    const styleProps = (info) => {
+const Player = ({info, number}: any) => {
+    const styleProps = (info: any) => {
         let styledObj = ''
         for (const prop in info) {
 
@@ -18,7 +19,7 @@ const Player = ({info, number}) => {
         <div className={`imgWrapper ${info.dead ? 'dead' : 'alive'}`}>
             <h4 className={info.roles.mafia || info.roles.don ? 'black' : 'red'}>{number}</h4>
             <div className={styleProps(info.roles)}/>
-            <img src={`http://localhost:4000/players/image/${info.player}`} alt={'k'}/>
+            <img src={`${URL}/players/image/${info.player}`} alt={'k'}/>
         </div>
 
     )

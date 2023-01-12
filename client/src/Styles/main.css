@@ -1,10 +1,3 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 3 | @import "materialize-src/sass/materialize.scss";
- *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   main.scss 3:9  root stylesheet */
-
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
       "Droid Sans Mono", monospace, monospace;

@@ -1,26 +1,27 @@
-import React, {useEffect, useState, useRef} from "react"
-import {Loader} from "../../Components/Loader"
+import {useEffect, useState, useRef} from "react"
+import Loader from "../../Components/Loader"
 import io from "socket.io-client"
 import axios from "axios"
-import { URL } from "../../Utils/global.util"
+import {URL} from "../../Utils/global.util"
+import {useParams} from "react-router-dom"
 
-const Inputs = ({state, players, setState}) => {
+const Inputs = ({state, players, setState}: any): any => {
     const [result, setResult] = useState([])
     const [click, setClick] = useState(false)
     useEffect(() => {
-        const temp = []
+        const temp: any = []
         if (state.length) {
             roles(temp)
         }
         setResult(() => temp)
     }, [state, click])
 
-    const playerStatus = (e, index) => {
+    const playerStatus = (e: any, index: any) => {
         state[index].dead = e.target.checked
         setState(() => state)
     }
 
-    const stateChange = (e, index) => {
+    const stateChange = (e: any, index: any) => {
         const {name} = e.target
         for (const role in state[index].roles) {
             if (Object.hasOwnProperty.call(state[index].roles, role)) {
@@ -35,7 +36,7 @@ const Inputs = ({state, players, setState}) => {
         setState(() => state)
     }
 
-    const playerChange = (e, index) => {
+    const playerChange = (e: any, index: any) => {
         setState(() => {
             state[index].player = e.target.value
             return state
@@ -43,13 +44,13 @@ const Inputs = ({state, players, setState}) => {
     }
 
     const populateOptions = () =>
-        players.map((player) => (
+        players.map((player: any) => (
             <option value={player.code} key={player.code}>
                 {player.name}
             </option>
         ))
 
-    const roles = (array) => {
+    const roles = (array: any) => {
         for (let index = 0; index < 10; index++) {
             array.push(
                 <div className="inputs" key={index}>
@@ -119,8 +120,9 @@ const Inputs = ({state, players, setState}) => {
     return result
 }
 
-const Admin = ({match}) => {
-    const socketRef = useRef()
+const Admin = () => {
+    const {id} = useParams()
+    const socketRef: any = useRef()
 
     const [state, setState] = useState([])
     const [players, setPlayers] = useState([])
@@ -128,45 +130,41 @@ const Admin = ({match}) => {
 
     useEffect(() => {
         fetchPlayers()
-        socketRef.current = io.connect(`${URL}`)
-        return () => socketRef.current.disconnect()
+        socketRef.current = io(`${URL}`)
     }, [])
 
     useEffect(() => {
         fetchRoomState()
-    }, [state.length, match.params.id])
+    }, [state.length, id])
 
     const fetchRoomState = async () => {
         if (!state.length) {
-            const roomRes = await axios.get(
-                `${URL}/room/${match.params.id}`
-            )
+            const roomRes = await axios.get(`${URL}/room/${id}`)
 
             setState(roomRes.data)
         }
     }
 
     const fetchPlayers = async () => {
-        const playersData = await axios.get(
-            `${URL}/players/all`
-        )
+        const playersData = await axios.get(`${URL}/players/all`)
         setPlayers(playersData.data)
     }
-    const onFormSubmit = (e) => {
+
+    const onFormSubmit = (e: any) => {
         e.preventDefault()
 
         if (distribution) {
-            return socketRef.current.emit(`room-${match.params.id}`, [])
+            return socketRef.current.emit(`room-${id}`, [])
         }
 
-        return socketRef.current.emit(`room-${match.params.id}`, state)
+        return socketRef.current.emit(`room-${id}`, state)
     }
 
     return (
         <>
             <div className="center direction-col">
-                <h1>Room #{match.params.id}</h1>
-                <form onSubmit={onFormSubmit}>
+                <h1>Room #{id}</h1>
+                <form onSubmit={onFormSubmit} className="form">
                     <div className="inputs" key="service">
                         <div>
                             <input

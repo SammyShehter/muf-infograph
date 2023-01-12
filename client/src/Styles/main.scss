@@ -1,12 +1,14 @@
 //libs
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-// @import "materialize-src/sass/materialize.scss";
 @import './mediaQ.scss';
 
 //vars
 @import './globals.scss';
 
-//files
+//Components
 @import '../Components/Player/Player.scss';
+@import '../Components/Loader/Loader.scss';
+//Pages
 @import '../Pages/Admin/Admin.scss';
-@import '../Pages/Main/App.scss';
+@import '../Pages/Main/Main.scss';
+@import '../Pages/Login/Login.scss';
