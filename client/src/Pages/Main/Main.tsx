@@ -1,9 +1,9 @@
 import {useState, useRef, useEffect} from "react"
 import io from "socket.io-client"
-import axios from "axios"
 import Player from "../../Components/Player"
-import {URL} from "../../Utils/global.util"
+import {BackendURL} from "../../Utils/global.util"
 import { useParams } from "react-router-dom"
+import { getRoomState } from "../../Utils/axios.http"
 
 function Main() {
     const {id} = useParams()
@@ -11,23 +11,19 @@ function Main() {
     const [state, setState] = useState([])
 
     useEffect(() => {
-        fetchDataX()
-        socketRef.current = io(`${URL}`)
+        fetchRoomState()
+        socketRef.current = io(BackendURL)
     }, [])
 
-    const fetchDataX = async () => {
-        if (!state.length) {
-            const {data} = await axios.get(`${URL}/room/${id}`)
-            setState(data)
+    const fetchRoomState = async () => {
+        if (!state.length && typeof id === "string") {
+            const roomState = await getRoomState(id as string)
+            setState(roomState)
         }
     }
 
-    const room = (array: any) => {
-        setState(array)
-    }
-
     useEffect(() => {
-        socketRef.current.on(`room-${id}`, room)
+        socketRef.current.on(`room-${id}`, setState)
     }, [state, id])
 
     const renderPlayers = () => {

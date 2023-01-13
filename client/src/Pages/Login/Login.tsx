@@ -4,7 +4,7 @@ import Loader from "../../Components/Loader"
 export const Login = () => {
     const [loading, setLoading] = useState(false)
     const [form, setForm] = useState({
-        username: "",
+        email: "",
         password: "",
     })
 
@@ -43,13 +43,13 @@ export const Login = () => {
                 <div className="group">
                     <input
                         type="text"
-                        name="username"
+                        name="email"
                         onChange={changeHandler}
                         required
                     />
                     <span className="highlight"></span>
                     <span className="bar"></span>
-                    <label>Name</label>
+                    <label>Email</label>
                 </div>
                 <div className="group">
                     <input

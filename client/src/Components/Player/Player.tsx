@@ -1,5 +1,5 @@
 import React from "react"
-import { URL } from "../../Utils/global.util"
+import { BackendURL } from "../../Utils/global.util"
 
 const Player = ({info, number}: any) => {
     const styleProps = (info: any) => {
@@ -19,7 +19,7 @@ const Player = ({info, number}: any) => {
         <div className={`imgWrapper ${info.dead ? 'dead' : 'alive'}`}>
             <h4 className={info.roles.mafia || info.roles.don ? 'black' : 'red'}>{number}</h4>
             <div className={styleProps(info.roles)}/>
-            <img src={`${URL}/players/image/${info.player}`} alt={'k'}/>
+            <img src={`${BackendURL}/players/image/${info.player}`} alt={'k'}/>
         </div>
 
     )

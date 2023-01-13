@@ -1,9 +1,10 @@
 import {useEffect, useState, useRef} from "react"
 import Loader from "../../Components/Loader"
 import io from "socket.io-client"
-import axios from "axios"
-import {URL} from "../../Utils/global.util"
+
+import {BackendURL} from "../../Utils/global.util"
 import {useParams} from "react-router-dom"
+import {getAllPlayersNames, getRoomState} from "../../Utils/axios.http"
 
 const Inputs = ({state, players, setState}: any): any => {
     const [result, setResult] = useState([])
@@ -130,7 +131,7 @@ const Admin = () => {
 
     useEffect(() => {
         fetchPlayers()
-        socketRef.current = io(`${URL}`)
+        socketRef.current = io(BackendURL)
     }, [])
 
     useEffect(() => {
@@ -138,16 +139,15 @@ const Admin = () => {
     }, [state.length, id])
 
     const fetchRoomState = async () => {
-        if (!state.length) {
-            const roomRes = await axios.get(`${URL}/room/${id}`)
-
-            setState(roomRes.data)
+        if (!state.length && typeof id === "string") {
+            const roomState = await getRoomState(id as string)
+            setState(roomState)
         }
     }
 
     const fetchPlayers = async () => {
-        const playersData = await axios.get(`${URL}/players/all`)
-        setPlayers(playersData.data)
+        const allPlayers = await getAllPlayersNames()
+        setPlayers(allPlayers)
     }
 
     const onFormSubmit = (e: any) => {
