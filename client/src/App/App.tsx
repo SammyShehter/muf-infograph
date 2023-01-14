@@ -6,6 +6,7 @@ import Login from "../Pages/Login"
 import {useState} from "react"
 import ProtectedRoute from "../Components/ProtectedRoute"
 import AuthContext from "../Context/AuthContext"
+import RoomAdmin from "../Pages/RoomAdmin"
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -14,11 +15,13 @@ const App = () => {
     const login = (token: string) => {
         setIsAuthenticated(true)
         setToken(token)
+        sessionStorage.setItem("token", token)
     }
 
     const logout = () => {
         setIsAuthenticated(false)
-        setToken("null")
+        setToken("")
+        sessionStorage.setItem("token", "")
     }
     return (
         <AuthContext.Provider
@@ -33,7 +36,10 @@ const App = () => {
                 <Routes>
                     <Route path="/room/:id" element={<Main />} />
                     <Route path="/room/admin/:id" element={<ProtectedRoute />}>
-                        <Route path="/room/admin/:id" element={<Admin />} />
+                        <Route path="/room/admin/:id" element={<RoomAdmin />} />
+                    </Route>
+                    <Route path="/admin" element={<ProtectedRoute />}>
+                        <Route path="/admin" element={<Admin />} />
                     </Route>
                     <Route path="/login" element={<Login />} />
                 </Routes>

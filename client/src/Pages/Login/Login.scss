@@ -103,7 +103,7 @@
         }
         .button {
             outline: 0;
-            background: #4caf50;
+            background: gray;
             width: 100%;
             border: 0;
             padding: 15px;
@@ -115,7 +115,7 @@
             &:hover,
             &:active,
             &:focus {
-                background: #43a047;
+                background: darken($color: gray, $amount: 10);
             }
         }
     }

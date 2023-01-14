@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BackendURL } from "./global.util"
+import {AuthURL, BackendURL} from "./global.util"
 
 export async function getRoomState(roomId: string) {
     try {
@@ -7,8 +7,8 @@ export async function getRoomState(roomId: string) {
         return response.data
     } catch (error) {
         return []
-    }    
-} 
+    }
+}
 
 export async function getAllPlayersNames() {
     try {
@@ -19,17 +19,23 @@ export async function getAllPlayersNames() {
     }
 }
 
-export async function login({email, password}: any) {
+export async function loginPostReq(form: any) {
     try {
-        const response = await axios.post()
+        const response = await axios.post(`${AuthURL}/login`, {...form})
+        return response.data
     } catch (error) {
         return ""
     }
 }
 
-export async function validateUser() {
+export async function validateUser(token: string) {
     try {
-        
+        const response = await axios.post(
+            `${AuthURL}/validation`,
+            {},
+            {headers: {authorization: `Bearer ${token}`}}
+        )
+        return response.data
     } catch (error) {
         return ""
     }
