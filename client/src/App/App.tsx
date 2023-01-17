@@ -7,6 +7,7 @@ import {useState} from "react"
 import ProtectedRoute from "../Components/ProtectedRoute"
 import AuthContext from "../Context/AuthContext"
 import RoomAdmin from "../Pages/RoomAdmin"
+import ImageEdit from "../Pages/ImageEdit"
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -42,6 +43,7 @@ const App = () => {
                         <Route path="/admin" element={<Admin />} />
                     </Route>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/edit" element={<ImageEdit />} />
                 </Routes>
             </Router>
         </AuthContext.Provider>
