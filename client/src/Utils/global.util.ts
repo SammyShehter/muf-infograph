@@ -1,6 +1,6 @@
 import { validateUser } from "./axios.http"
 
-const baseURL = "http://192.168.1.146"
+const baseURL = "http://172.18.5.7"
 export const BackendURL = `${baseURL}:4000`
 export const AuthURL = `${baseURL}:10000`
 
@@ -12,7 +12,6 @@ export const userChecks = async (login: Function, token: string, isAuthenticated
         return
     }
     const userInfo = await validateUser(authToken)
-    console.log(userInfo)
 
     if (userInfo && userInfo.message === "SUCCESS") {
         login(authToken)
