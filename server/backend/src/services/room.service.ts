@@ -1,24 +1,13 @@
-import {ObjectId} from "mongoose"
-import {Feed} from "../types/feed.type"
-import { singleAnswer } from "../types/http.types"
-import {Room, RoomWatchListCheck, UserRoom} from "../types/post.type"
-import {pattern} from "../utils/bad-words"
-import {feedSorting} from "../utils/common.utils"
-import MongooseService from "./mongo.service"
-import UserService from "./user.service"
+import Mongo from "./mongo.service"
 
 class RoomService {
-    private db: typeof MongooseService
-    constructor(DB: typeof MongooseService) {
+    private db: typeof Mongo
+    constructor(DB: typeof Mongo) {
         this.db = DB
         console.log("RoomService instance created")
     }
 
-    getRoomData = async (roomID: string) => {
-        
-        this.db.
-    }
-
+    getRoomData = async (roomID: string) => {}
 }
 
-export default new RoomService(MongooseService)
+export default new RoomService(Mongo)

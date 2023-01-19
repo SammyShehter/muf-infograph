@@ -1,5 +1,4 @@
 import {createClient} from "redis"
-import {EventEmitter} from "stream"
 
 class Redis {
     client: any
@@ -10,37 +9,21 @@ class Redis {
         ) //TODO write error to error.log
     }
 
-    connectWithRetry = (
-        eventEmmiter: EventEmitter,
-        count: number = 0,
-        retryAttempt: number = 5,
-        retrySeconds: number = 5
-    ) => {
-        if (count >= retryAttempt) {
-            console.log("Connection to Redis failed")
-            process.exit(1)
-        }
-        console.log("Attemptin to connect to Redis")
-        this.client
-            .connect({
+    connectWithRetry = async (count: number) => {
+        count > 1 && console.log(`Attemptin to connect to Redis. Attempt number ${count}`)
+        try {
+            await this.client.connect({
                 url: `redis://:${process.env.REDIS_PASSWROD}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
             })
-            .then(() => {
-                console.log("Redis is connected")
-                eventEmmiter.emit("redis_ready")
-            })
-            .catch(async (err: any) => {
-                count++
-                console.log(
-                    `Redis connection failed, will retry ${count}/${retryAttempt} attempt after ${retrySeconds} seconds`,
-                    err.message
-                )
-                setTimeout(
-                    () => this.connectWithRetry(eventEmmiter, count),
-                    retrySeconds * 1000
-                )
-            })
+            console.log("Redis is connected")
+            return this.client.isReady
+        } catch (error) {
+            console.log(`Redis connection failed`, error.message, "\n")
+            return false
+        }
     }
+
+    get connected(){ return this.client.isReady}
 
     set = async (key: string, value: any) => this.client.set(key, value)
 

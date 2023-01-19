@@ -2,6 +2,8 @@ import fs from "fs"
 import {Request, Response} from "express"
 import {ErrorCodes} from "./error.utils"
 
+export const sleep = (s: number) => new Promise((r) => setTimeout(r, s*1000));
+
 export const randColor = () =>
     Math.floor(Math.random() * 256 * 256 * 256)
         .toString(16)

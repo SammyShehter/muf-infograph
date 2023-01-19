@@ -16,7 +16,7 @@ class RoomController {
         } catch (error) {
             handleError(error, req, res)
         }
-    })
+    }
 }
 
 export default new RoomController()
