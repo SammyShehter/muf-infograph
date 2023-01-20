@@ -1,3 +1,7 @@
+node_modules
+dist
 data
-env
+*.log
 .env
+watchlist.txt
+mock-data.json
