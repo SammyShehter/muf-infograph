@@ -141,13 +141,13 @@ const RoomAdmin = () => {
     const fetchRoomState = async () => {
         if (!state.length && typeof id === "string") {
             const roomState = await getRoomState(id as string)
-            setState(roomState)
+            setState(roomState.data)
         }
     }
 
     const fetchPlayers = async () => {
         const allPlayers = await getAllPlayersNames()
-        setPlayers(allPlayers)
+        setPlayers(allPlayers.data)
     }
 
     const onFormSubmit = (e: any) => {

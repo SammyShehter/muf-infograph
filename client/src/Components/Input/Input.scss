@@ -1,0 +1,83 @@
+.group {
+    position: relative;
+    margin-bottom: 45px;
+
+    input {
+        margin: auto;
+        width: 100%;
+        font-size: 18px;
+        padding: 10px 0px;
+        display: block;
+        border: none;
+        border-bottom: 1px solid #757575;
+        background: none;
+
+        &:focus {
+            outline: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+        &:focus ~ label,
+        &:valid ~ label {
+            top: -20px;
+            font-size: 14px;
+            color: darken($color: white, $amount: 5);
+        }
+
+        &:focus ~ .bar:before {
+            width: 100%;
+        }
+
+        &:focus ~ .highlight {
+            -webkit-animation: inputHighlighter 0.3s ease;
+            -moz-animation: inputHighlighter 0.3s ease;
+            animation: inputHighlighter 0.3s ease;
+        }
+    }
+
+    /* LABEL ======================================= */
+    .label {
+        color: white;
+        font-size: 18px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        top: 10px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    /* BOTTOM BARS ================================= */
+    .bar {
+        position: relative;
+        display: block;
+        margin: auto;
+        width: 100%;
+        &:before,
+        &:after {
+            content: "";
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: darken($color: #cfd2df, $amount: 20);
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+    }
+
+    /* HIGHLIGHTER ================================== */
+    .highlight {
+        position: absolute;
+        height: 60%;
+        width: 100px;
+        top: 25%;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}

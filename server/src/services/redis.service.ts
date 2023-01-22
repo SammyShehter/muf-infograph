@@ -29,7 +29,15 @@ class Redis {
         return this.client.isReady
     }
 
-    set = async (key: string, value: any) => this.client.set(key, value)
+    set = async (key: string, value: string) => {
+        try {
+            const result = await this.client.set(key, value)
+            return result
+        } catch (error) {
+            console.log(error.message) //TODO add to error.log
+            return false
+        }
+    }
 
     get = async (key: string) => {
         try {

@@ -1,16 +1,21 @@
 //libs
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import './mediaQ.scss';
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import "./mediaQ.scss";
 
 //vars
-@import './globals.scss';
+@import "./globals.scss";
 
 //Components
-@import '../Components/Player/Player.scss';
-@import '../Components/Loader/Loader.scss';
+@import "../Components/Player/Player.scss";
+@import "../Components/Loader/Loader.scss";
+@import "../Components/Button/Button.scss";
+@import "../Components/Input/Input.scss";
+@import "../Components/ImageEdit/ImageEdit.scss";
+
 //Pages
-@import '../Pages/Admin/Admin.scss';
-@import '../Pages/RoomAdmin/RoomAdmin.scss';
-@import '../Pages/Main/Main.scss';
-@import '../Pages/Login/Login.scss';
-@import '../Pages/ImageEdit/ImageEdit.scss';
+@import "../Pages/Admin/Admin.scss";
+@import "../Pages/RoomAdmin/RoomAdmin.scss";
+@import "../Pages/Room/Room.scss";
+@import "../Pages/Login/Login.scss";
+@import "../Pages/FrontPage/FrontPage.scss";
+@import "../Pages/NewPlayer/NewPlayer.scss";

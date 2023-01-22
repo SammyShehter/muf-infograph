@@ -1,10 +1,10 @@
 import { validateUser } from "./axios.http"
 
-const baseURL = "http://172.18.5.7"
+const baseURL = "http://localhost"
 export const BackendURL = `${baseURL}:4000`
 export const AuthURL = `${baseURL}:10000`
 
-export const userChecks = async (login: Function, token: string, isAuthenticated: boolean, setLoading: Function) => {
+export const userChecks = async (login: Function, token: string, isAuthenticated: boolean, setLoading: Function, logout: Function) => {
     const authToken = token.length ? token : sessionStorage.getItem("token")
     if (!authToken) {
         isAuthenticated = false
@@ -16,5 +16,19 @@ export const userChecks = async (login: Function, token: string, isAuthenticated
     if (userInfo && userInfo.message === "SUCCESS") {
         login(authToken)
         setLoading(false)
+        return
     }
+    logout()
+}
+
+export function dayNightBg () {
+    const clock = new Date().getHours()
+    const inlineStyle = {
+        background: 'url("/12.jpeg") center',
+        backgroundSize: "cover",
+    }
+    clock > 7 && clock < 19
+        ? (inlineStyle.background = 'url("/12.jpeg") center')
+        : (inlineStyle.background = 'url("/24.jpeg") center')
+    return inlineStyle
 }

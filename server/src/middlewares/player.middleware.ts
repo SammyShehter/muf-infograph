@@ -28,8 +28,7 @@ class PlayerMiddleware extends CommonValidator {
             .notEmpty()
             .withMessage(`Please provide image`)
             .trim()
-            .escape()
-            .isBase64()
+            .isString()
             .withMessage(`Please send the body as a base64 string`),
     ])
 
@@ -51,6 +50,7 @@ class PlayerMiddleware extends CommonValidator {
                 new Set(
                     req.body.codes.filter(
                         (name: string) =>
+                            name &&
                             typeof name === "string" &&
                             name.length >= 1 &&
                             name.length <= 20

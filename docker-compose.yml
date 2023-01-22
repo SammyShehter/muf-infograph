@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+    redis:
+        image: redis:latest
+        restart: always
+        ports:
+            - "6379:6379"
+        command: redis-server --save 20 1 --loglevel warning
+        volumes:
+            - ./data:/data
+    mongo:
+        image: mongo
+        container_name: "mongo-container"
+        environment:
+            - MONGO_INITDB_DATABASE=Users
+            - MONGO_INITDB_ROOT_USERNAME=sammy
+            - MONGO_INITDB_ROOT_PASSWORD=123456
+        volumes:
+            - ./data:/data/db
+        ports:
+            - "27017:27017"
+volumes:
+    redis:
+        driver: local

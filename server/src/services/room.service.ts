@@ -5,14 +5,14 @@ import Redis from "./redis.service"
 class RoomService {
     private db: typeof Mongo
     private cache: typeof Redis
-    private defaultState = new Array(10).fill({
+    defaultState = new Array(10).fill({
         roles: {
             mafia: false,
             don: false,
             sheriff: false,
         },
         dead: false,
-        player: "Herald",
+        player: "herald",
     })
 
     constructor(DB: typeof Mongo, Cache: typeof Redis) {
@@ -22,13 +22,13 @@ class RoomService {
     }
 
     getRoomData = async (roomID: string) => {
-        const roomState = await this.cache.get(roomID)
+        const roomState = await this.cache.get("room-" + roomID)
         if (!roomState) return this.defaultState
-        return roomState
+        return JSON.parse(roomState)
     }
 
     setRoomData = async (roomID: string, roomState: Array<Room>) => {
-        this.cache.set(roomID, roomState)
+        this.cache.set(roomID, JSON.stringify(roomState))
     }
 }
 

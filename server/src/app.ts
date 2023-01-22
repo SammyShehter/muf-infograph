@@ -8,7 +8,8 @@ import {router as roomRouter} from "./router/room.router"
 import {router as playerRouter} from "./router/player.router"
 import {handle404, mufInfo} from "./utils/common.utils"
 import {init, initEvents} from "./utils/init.util"
-import { createServer } from "http"
+import RoomService from "./services/room.service"
+require("dotenv").config()
 
 const app = express()
 const CLIENT = "*"
@@ -17,18 +18,15 @@ const NODE_ENV = "development"
 const log = NODE_ENV === "development" ? "dev" : "combined"
 
 app.use(express.json())
+app.use(cors({origin: CLIENT}))
+app.use(express.json({limit: "50mb"}))
+app.use(express.urlencoded({limit: "50mb", extended: true}))
 app.use(CommonMiddleware.saveRequest)
+app.use(logger(log))
 app.use("/rooms", roomRouter)
 app.use("/players", playerRouter)
-app.use(handle404)
-app.use(cors({origin: true}))
-app.use(express.json({limit: "2mb"}))
-// app.use(express.urlencoded({extended: false}))
-app.use(logger(log))
-
-require("dotenv").config()
-
-const io = new Server(createServer(app), {
+const http = require("http").createServer(app)
+const io = new Server(http, {
     cors: {
         origin: CLIENT,
         methods: ["GET", "POST"],
@@ -39,19 +37,13 @@ const rooms = []
 for (let index = 0; index <= 7; index++) {
     rooms.push(`room-${index + 1}`)
 }
-const callback = (roomNumber: number) => (array: Array<any>) => { //TODO Array<Room>
+const callback = (roomNumber: string) => (array: Array<any>) => {
+    //TODO Array<Room>
     if (!array.length) {
-        const defaultState = JSON.parse(
-            fs.readFileSync("defaultState.json", "utf8")
-        )
-        return io.emit(`${roomNumber}`, defaultState)
+        return io.emit(roomNumber, RoomService.defaultState)
     } else {
-        fs.writeFileSync(
-            `state-${roomNumber}.json`,
-            JSON.stringify(array),
-            "utf8"
-        )
-        return io.emit(`${roomNumber}`, array)
+        RoomService.setRoomData(roomNumber, array)
+        return io.emit(roomNumber, array)
     }
 }
 
@@ -65,10 +57,9 @@ initEvents.once("ready", () => {
         )
     })
 
-    app.listen(PORT, function () {
+    http.listen(PORT, function () {
         console.log(`Listening on port ${process.env.PORT}`)
-        console.log(
-            mufInfo
-        )
+        console.log(mufInfo)
     })
 })
+app.use(handle404)

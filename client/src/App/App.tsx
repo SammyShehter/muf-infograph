@@ -1,5 +1,9 @@
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
-import Main from "../Pages/Main"
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+} from "react-router-dom"
+import Room from "../Pages/Room"
 import Admin from "../Pages/Admin"
 import "../Styles/main.scss"
 import Login from "../Pages/Login"
@@ -7,7 +11,8 @@ import {useState} from "react"
 import ProtectedRoute from "../Components/ProtectedRoute"
 import AuthContext from "../Context/AuthContext"
 import RoomAdmin from "../Pages/RoomAdmin"
-import ImageEdit from "../Pages/ImageEdit"
+import FrontPage from "../Pages/FrontPage"
+import NewPlayer from "../Pages/NewPlayer"
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -35,15 +40,18 @@ const App = () => {
         >
             <Router>
                 <Routes>
-                    <Route path="/room/:id" element={<Main />} />
+                    <Route path="/room/:id" element={<Room />} />
                     <Route path="/room/admin/:id" element={<ProtectedRoute />}>
                         <Route path="/room/admin/:id" element={<RoomAdmin />} />
                     </Route>
                     <Route path="/admin" element={<ProtectedRoute />}>
                         <Route path="/admin" element={<Admin />} />
                     </Route>
+                    <Route path="/admin/new" element={<ProtectedRoute />}>
+                        <Route path="/admin/new" element={<NewPlayer />} />
+                    </Route>
                     <Route path="/login" element={<Login />} />
-                    <Route path="/edit" element={<ImageEdit />} />
+                    <Route path="*" element={<FrontPage />} />
                 </Routes>
             </Router>
         </AuthContext.Provider>

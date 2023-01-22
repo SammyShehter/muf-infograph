@@ -1,4 +1,5 @@
 import {ObjectId} from "mongoose"
+import {Player} from "./player.type"
 
 export type Room = {
     _id?: ObjectId
@@ -9,6 +10,6 @@ export type Room = {
             sheriff: boolean
         }
         dead: boolean
-        player: string
+        player: Player | string
     }>
 }

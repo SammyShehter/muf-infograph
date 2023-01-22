@@ -6,7 +6,6 @@
     .login-box {
         display: block;
         width: 440px;
-        height: 290px;
         padding: 4rem;
         background-color: rgb(209 213 219 / 0.5);
 
@@ -17,106 +16,6 @@
             line-height: 2.25rem;
             --tw-text-opacity: 1;
             color: rgb(255 255 255 / var(--tw-text-opacity));
-        }
-        .group {
-            position: relative;
-            margin-bottom: 45px;
-
-            input {
-                margin: auto;
-                width: 100%;
-                font-size: 18px;
-                padding: 10px 0px;
-                display: block;
-                border: none;
-                border-bottom: 1px solid #757575;
-                background: none;
-
-                &:focus {
-                    outline: none;
-                    border-bottom: 1px solid transparent;
-                    transition: 0.2s ease all;
-                    -moz-transition: 0.2s ease all;
-                    -webkit-transition: 0.2s ease all;
-                }
-                &:focus ~ label,
-                &:valid ~ label {
-                    top: -20px;
-                    font-size: 14px;
-                    color: #5264ae;
-                }
-
-                &:focus ~ .bar:before {
-                    width: 100%;
-                }
-
-                &:focus ~ .highlight {
-                    -webkit-animation: inputHighlighter 0.3s ease;
-                    -moz-animation: inputHighlighter 0.3s ease;
-                    animation: inputHighlighter 0.3s ease;
-                }
-            }
-
-            /* LABEL ======================================= */
-            label {
-                color: #999;
-                font-size: 18px;
-                font-weight: normal;
-                position: absolute;
-                pointer-events: none;
-                top: 10px;
-                transition: 0.2s ease all;
-                -moz-transition: 0.2s ease all;
-                -webkit-transition: 0.2s ease all;
-            }
-
-            /* BOTTOM BARS ================================= */
-            .bar {
-                position: relative;
-                display: block;
-                margin: auto;
-                width: 100%;
-                &:before,
-                &:after {
-                    content: "";
-                    height: 2px;
-                    width: 0;
-                    bottom: 1px;
-                    position: absolute;
-                    background: #5264ae;
-                    transition: 0.2s ease all;
-                    -moz-transition: 0.2s ease all;
-                    -webkit-transition: 0.2s ease all;
-                }
-            }
-
-            /* HIGHLIGHTER ================================== */
-            .highlight {
-                position: absolute;
-                height: 60%;
-                width: 100px;
-                top: 25%;
-                left: 0;
-                pointer-events: none;
-                opacity: 0.5;
-            }
-        }
-        .button {
-            outline: 0;
-            background: gray;
-            width: 100%;
-            border: 0;
-            padding: 15px;
-            color: #ffffff;
-            font-size: 14px;
-            -webkit-transition: all 0.3 ease;
-            transition: all 0.3 ease;
-            cursor: pointer;
-            &:hover,
-            &:active,
-            &:focus {
-                background: darken($color: gray, $amount: 10);
-            }
         }
     }
 }
