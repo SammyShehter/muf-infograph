@@ -1,14 +1,48 @@
-body{
-    margin: 0;
-    font-family: 'Nunito', sans-serif;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.center{
+::-webkit-input-placeholder {
+    color: #c3c3c3;
+}
+
+p {
+    color: $text-color;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+}
+
+i {
+    padding: 1rem;
+}
+
+.center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.direction-col{
+.direction-col {
     flex-direction: column;
+}
+
+.flex {
+    display: "flex";
 }

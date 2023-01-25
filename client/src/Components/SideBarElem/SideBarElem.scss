@@ -1,0 +1,131 @@
+.c-menu__item {
+    color: #184a98;
+    max-width: 100%;
+    overflow: hidden;
+
+    &__inner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-height: 60px;
+        position: relative;
+        cursor: pointer;
+        @include transition(background-color 0.3s ease-in-out);
+
+        &:before {
+            position: absolute;
+            content: " ";
+            height: 0;
+            width: 2px;
+            left: 0;
+            top: 50%;
+            margin-top: -18px;
+            background-color: $light-blue;
+            opacity: 0;
+
+            @include transition(all 0.5s ease-in-out);
+        }
+    }
+
+    &.is-active {
+        color: #fff;
+
+        .c-menu__item__inner {
+            border-left-color: #fff;
+            background-color: #1e3e6f;
+
+            svg {
+                color: #fff;
+            }
+
+            .c-menu-item__title {
+                span {
+                    color: #fff;
+                }
+            }
+
+            &:before {
+                height: 36px;
+                opacity: 1;
+            }
+        }
+    }
+
+    &:not(.is-active):hover {
+        color: #fff;
+        .c-menu__item__inner {
+            background-color: #1e3e6f;
+            border-left-color: #1e3e6f;
+        }
+    }
+
+    svg {
+        flex: 0 0 $sidebarReducedWidth;
+        font-size: 16px;
+        font-weight: normal;
+        text-align: center;
+
+        @include transition(all 0.5s ease-in-out);
+    }
+
+    .c-menu-item__expand {
+        position: relative;
+        left: 100px;
+        padding-right: 20px;
+        color: #fff;
+        margin-left: auto;
+
+        @include transition(left 1s ease-in-out);
+
+        .sidebar-is-expanded & {
+            left: 0px;
+        }
+    }
+
+    .c-menu-item__title {
+        flex-basis: 100%;
+        padding-right: 10px;
+        position: relative;
+        color: #fff;
+        left: $sidebarExpandedWidth;
+        opacity: 0;
+
+        span {
+            font-weight: 400;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            @include transition(left 0.5s ease-in-out);
+        }
+
+        .sidebar-is-expanded & {
+            left: 0px;
+            opacity: 1;
+        }
+
+        @include transition(all 0.7s ease-in-out);
+    }
+
+    .c-menu__submenu {
+        background-color: $navy;
+        padding: 15px;
+        font-size: 12px;
+        display: none;
+
+        li {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid;
+            border-color: lighten($navy, 4%);
+            color: $light-blue;
+
+            &:last-child {
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.l-sidebar {
+    width: $sidebarReducedWidth;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: $main-color;
+
+    .logo {
+        width: 100%;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $navy;
+
+        .logo__txt {
+            font-size: 26px;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            font-weight: 700;
+        }
+    }
+
+    &__content {
+        position: relative;
+    }
+
+    .sidebar-is-expanded & {
+        width: $sidebarExpandedWidth;
+    }
+
+    @include transition(width 0.5s ease-in-out);
+}

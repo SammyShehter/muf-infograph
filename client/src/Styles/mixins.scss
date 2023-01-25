@@ -1,0 +1,36 @@
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+    background-clip: padding-box;
+}
+
+@mixin box-shadow($args...) {
+    -webkit-box-shadow: $args;
+    -moz-box-shadow: $args;
+    box-shadow: $args;
+}
+
+@mixin linear-gradient($top, $bottom) {
+    background: $top;
+    background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, $top),
+        color-stop(100%, $bottom)
+    );
+    background: -webkit-linear-gradient(top, $top 0%, $bottom 100%);
+    background: -o-linear-gradient(top, $top 0%, $bottom 100%);
+    background: -ms-linear-gradient(top, $top 0%, $bottom 100%);
+    background: linear-gradient(to bottom, $top 0%, $bottom 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0);
+}

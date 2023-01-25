@@ -64,7 +64,7 @@ const ImageEditor = ({picture, setPicture}: any) => {
                     &times;
                 </span>
 
-                <div className="modal-flex">
+                <div className="flex direction-col modal-flex">
                     <AvatarEditor
                         ref={setEditorRef}
                         image={picture.img}

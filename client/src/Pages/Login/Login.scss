@@ -5,7 +5,7 @@
 
     .login-box {
         display: block;
-        width: 440px;
+        // width: 440px;
         padding: 4rem;
         background-color: rgb(209 213 219 / 0.5);
 
@@ -16,6 +16,17 @@
             line-height: 2.25rem;
             --tw-text-opacity: 1;
             color: rgb(255 255 255 / var(--tw-text-opacity));
+        }
+    }
+}
+
+@include media("<=desktop") {
+    .login-screen{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .login-box{
+            padding: 1rem;
         }
     }
 }

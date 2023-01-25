@@ -164,7 +164,7 @@ const RoomAdmin = () => {
         <>
             <div className="center direction-col">
                 <h1>Room #{id}</h1>
-                <form onSubmit={onFormSubmit} className="form">
+                <form onSubmit={onFormSubmit} className="flex direction-col form">
                     <div className="inputs" key="service">
                         <div>
                             <input

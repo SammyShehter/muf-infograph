@@ -55,7 +55,7 @@ export default function NewPlayer() {
             <div className="login-box">
                 {message && <h3 className="welcome-message">{message}</h3>}
                 <form onSubmit={newPlayerHandler}>
-                    <div style={{width: 200, height: 200, display: "flex"}}>
+                    <div style={{height: 200, display: "flex"}}>
                         <img
                             src={picture.croppedImg}
                             style={{

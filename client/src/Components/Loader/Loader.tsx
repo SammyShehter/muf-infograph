@@ -4,7 +4,7 @@ export const Loader = ({height = "20px", width = "20px"}) => {
 
 export const FullLoader = () => {
     return (
-        <div className="loaderBackground">
+        <div className="flex center loaderBackground">
             <div className="loader"></div>
         </div>
     )
