@@ -12,7 +12,7 @@ import ProtectedRoute from "../Components/ProtectedRoute"
 import AuthContext from "../Context/AuthContext"
 import RoomAdmin from "../Pages/RoomAdmin"
 import FrontPage from "../Pages/FrontPage"
-import NewPlayer from "../Pages/NewPlayer"
+import NewPlayer from "../Components/NewPlayer"
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -46,9 +46,6 @@ const App = () => {
                     </Route>
                     <Route path="/admin" element={<ProtectedRoute />}>
                         <Route path="/admin" element={<Admin />} />
-                    </Route>
-                    <Route path="/admin/new" element={<ProtectedRoute />}>
-                        <Route path="/admin/new" element={<NewPlayer />} />
                     </Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="*" element={<FrontPage />} />

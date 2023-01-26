@@ -107,7 +107,6 @@
 
         @include transition(all 0.7s ease-in-out);
     }
-
     .c-menu__submenu {
         background-color: $navy;
         padding: 15px;
@@ -129,3 +128,25 @@
         }
     }
 }
+
+.tooltip {
+    width: 120px;
+    &-inner {
+        padding: 8px 10px;
+        color: #fff;
+        text-align: center;
+        background-color: #051835;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+    &-arrow {
+        border-right-color: #051835 !important;
+    }
+}
+
+// important part!
+// .u-list {
+//     margin: 0;
+//     padding: 0;
+//     list-style: none;
+// }

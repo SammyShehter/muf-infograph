@@ -1,4 +1,5 @@
 import AvatarEditor from "react-avatar-editor"
+import Button from "../Button"
 // import jpeg from 'jpeg-js';
 
 const ImageEditor = ({picture, setPicture}: any) => {
@@ -59,12 +60,11 @@ const ImageEditor = ({picture, setPicture}: any) => {
 
     return (
         <div className="modal" onClick={handleCancel} style={divStyle}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <span className="close" onClick={handleCancel}>
-                    &times;
-                </span>
-
-                <div className="flex direction-col modal-flex">
+            <div
+                className="modal-content flex direction-col"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <div className="flex direction-col center modal-flex">
                     <AvatarEditor
                         ref={setEditorRef}
                         image={picture.img}
@@ -82,11 +82,15 @@ const ImageEditor = ({picture, setPicture}: any) => {
                         max={10}
                         step={0.1}
                         onChange={(e) => handleSlider(e)}
+                        className="input"
                     ></input>
-                    <div>
-                        <button onClick={handleCancel}>Cancel</button>
-                        <button onClick={handleSave}>Save</button>
-                    </div>
+                    <Button
+                        text="Cancel"
+                        disabled={false}
+                        onClick={handleCancel}
+                    />
+                    <br />
+                    <Button text="Save" disabled={false} onClick={handleSave} />
                 </div>
             </div>
         </div>

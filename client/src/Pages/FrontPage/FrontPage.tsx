@@ -10,7 +10,6 @@ export default function FrontPage() {
                     <Button
                         text={`Room #${index}`}
                         disabled={false}
-                        type="button"
                     />
                 </Link>
             )

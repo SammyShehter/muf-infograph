@@ -1,56 +1,40 @@
-/* Background effect. It covers the entire site */
 .modal {
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(
-        0,
-        0,
-        0,
-        0.4
-    ); /* Overlay effect: translucent background: black w/ partial opacity */
-    z-index: 1; /* Overlay effect: positioned over other containers */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    position: fixed; /* Fix position on the top-left corner*/
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    position: fixed;
     top: 0;
     left: 0;
-    overflow: auto; /* Enable scroll if needed */
-    padding-top: 80px; /* Location of the content container */
+    overflow: auto;
+    padding-top: 80px;
+
+    .modal-content {
+        background-color: $bg-color-light;
+        max-width: 640px;
+        margin: auto;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 20px;
+
+        .modal-flex {
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+
+            .input {
+                width: 100%;
+                padding: 3rem 0;
+            }
+        }
+    }
 }
 
-/* Modal content */
-.modal-content {
-    background-color: white;
-    width: 70%; /* Width in proportion to its parent container*/
-    max-width: 640px; /* Max width where it stops expanding */
-    height: 70%; /* Height in proportion to its parent container */
-    margin: auto; /* Auto margin according to the element width */
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 20px; /* Optional. Rounds container corners */
-}
-
-.modal-flex {
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-info {
-    background-color: #888;
-    border: 1px solid #888;
-}
-
-/* Close button */
-.close {
-    color: #aaaaaa;
-    float: right; /* Positioned to the right of the parent container whichever size it is */
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+@include media("<=desktop") {
+    .modal {
+        .modal-content {
+            width: 100%;
+            padding: 2rem;
+        }
+    }
 }

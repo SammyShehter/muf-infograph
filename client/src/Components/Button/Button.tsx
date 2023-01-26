@@ -1,14 +1,16 @@
 export default function Button({
-    type,
+    type = "button",
     disabled,
-    text
+    text,
+    onClick = () => {}
 }: {
-    type: "button" | "submit" | "reset" | undefined
+    type?: "button" | "submit" | "reset"
     disabled: boolean
     text: string
+    onClick?: any
 }) {
     return (
-        <button className="button" type={type} disabled={disabled}>
+        <button onClick={onClick} className="button" type={type} disabled={disabled}>
             {text}
         </button>
     )

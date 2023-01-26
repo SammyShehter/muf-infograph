@@ -34,3 +34,9 @@
 
     @include transition(width 0.5s ease-in-out);
 }
+
+.u-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
