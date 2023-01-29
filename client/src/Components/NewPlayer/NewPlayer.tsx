@@ -49,7 +49,7 @@ export default function NewPlayer() {
     }
 
     return (
-        <div className="new-player-wrapper">
+        <div className="new-player-wrapper direction-col">
             {message && <h3 className="welcome-message">{message}</h3>}
             <form onSubmit={newPlayerHandler}>
                 <div>

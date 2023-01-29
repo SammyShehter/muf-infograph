@@ -8,7 +8,7 @@ const ImageEditor = ({picture, setPicture}: any) => {
     const handleSlider = (e: any) => {
         setPicture({
             ...picture,
-            zoom: e.target.value,
+            zoom: +e.target.value,
         })
     }
 

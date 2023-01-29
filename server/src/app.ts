@@ -1,5 +1,4 @@
 import express from "express"
-import fs from "fs"
 import logger from "morgan"
 import cors from "cors"
 import {Server} from "socket.io"
@@ -17,7 +16,6 @@ const PORT = 4000
 const NODE_ENV = "development"
 const log = NODE_ENV === "development" ? "dev" : "combined"
 
-app.use(express.json())
 app.use(cors({origin: CLIENT}))
 app.use(express.json({limit: "50mb"}))
 app.use(express.urlencoded({limit: "50mb", extended: true}))
