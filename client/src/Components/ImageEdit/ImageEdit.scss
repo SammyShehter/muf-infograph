@@ -11,9 +11,9 @@
 
     .modal-content {
         background-color: $bg-color-light;
-        max-width: 640px;
+        max-width: 400px;
         margin: auto;
-        padding: 10px;
+        padding: 2rem;
         border: 1px solid black;
         border-radius: 20px;
 
@@ -34,7 +34,6 @@
     .modal {
         .modal-content {
             width: 100%;
-            padding: 2rem;
         }
     }
 }

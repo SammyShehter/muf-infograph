@@ -71,7 +71,7 @@ const ImageEditor = ({picture, setPicture}: any) => {
                         width={200}
                         height={200}
                         border={50}
-                        color={[255, 255, 255, 0.6]} // RGBA
+                        color={[255, 255, 255, 0.6]}
                         rotate={0}
                         scale={picture.zoom}
                     />
@@ -86,11 +86,10 @@ const ImageEditor = ({picture, setPicture}: any) => {
                     ></input>
                     <Button
                         text="Cancel"
-                        disabled={false}
                         onClick={handleCancel}
                     />
                     <br />
-                    <Button text="Save" disabled={false} onClick={handleSave} />
+                    <Button text="Save" onClick={handleSave} />
                 </div>
             </div>
         </div>

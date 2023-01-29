@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import AuthContext from "../../Context/AuthContext"
+import AuthContext from "../../../Context/AuthContext"
 
 export default function AdminHeader({open, setOpen}: any) {
     const {logout} = useContext(AuthContext)

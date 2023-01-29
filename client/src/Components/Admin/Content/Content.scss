@@ -1,0 +1,33 @@
+.content-wrapper {
+    padding: 25px;
+    height: 100vh;
+    overflow: auto;
+
+    // .page-content {
+    //     border-top: 1px solid $light-grey;
+    //     padding-top: 25px;
+    //     color: $text-color;
+    // }
+
+    // &--with-bg {
+    //     .page-content {
+    //         background: #fff;
+    //         border-radius: 3px;
+    //         border: 1px solid $light-grey;
+    //         padding: 25px;
+    //     }
+    // }
+}
+
+.page-title {
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+@include media("<=desktop") {
+    .content-wrapper {
+        padding: 5px;
+        overflow-x: hidden;
+    }
+}

@@ -1,10 +1,12 @@
 import {useEffect, useState, useRef} from "react"
-import {Loader} from "../../Components/Loader/Loader"
+import {FullLoader} from "../../Components/Loader/Loader"
 import io from "socket.io-client"
 
 import {BackendURL} from "../../Utils/global.util"
 import {useParams} from "react-router-dom"
 import {getAllPlayersNames, getRoomState} from "../../Utils/axios.http"
+import {Link} from "react-router-dom"
+import Button from "../../Components/Button"
 
 const Inputs = ({state, players, setState}: any): any => {
     const [result, setResult] = useState([])
@@ -14,12 +16,12 @@ const Inputs = ({state, players, setState}: any): any => {
         if (state.length) {
             roles(temp)
         }
-        setResult(() => temp)
+        setResult(temp)
     }, [state, click])
 
     const playerStatus = (e: any, index: any) => {
         state[index].dead = e.target.checked
-        setState(() => state)
+        setState(state)
     }
 
     const stateChange = (e: any, index: any) => {
@@ -33,8 +35,8 @@ const Inputs = ({state, players, setState}: any): any => {
                 }
             }
         }
-        setClick(() => !click)
-        setState(() => state)
+        setClick(!click)
+        setState(state)
     }
 
     const playerChange = (e: any, index: any) => {
@@ -116,7 +118,7 @@ const Inputs = ({state, players, setState}: any): any => {
         return array
     }
 
-    if (!state.length) return <Loader />
+    if (!state.length) return <FullLoader />
 
     return result
 }
@@ -162,9 +164,15 @@ const RoomAdmin = () => {
 
     return (
         <>
+            <Link to={`/admin`}>
+                <Button text={`Back to Admin Dashboard`} />
+            </Link>
             <div className="center direction-col">
                 <h1>Room #{id}</h1>
-                <form onSubmit={onFormSubmit} className="flex direction-col form">
+                <form
+                    onSubmit={onFormSubmit}
+                    className="flex direction-col form"
+                >
                     <div className="inputs" key="service">
                         <div>
                             <input
