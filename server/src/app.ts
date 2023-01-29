@@ -33,10 +33,9 @@ const io = new Server(http, {
     },
 })
 
-const rooms = []
-for (let index = 0; index <= 7; index++) {
-    rooms.push(`room-${index + 1}`)
-}
+const rooms = new Array(7)
+    .fill(0)
+    .map((_: number, index: number) => `room-${index + 1}`)
 const callback = (roomNumber: string) => (array: Array<any>) => {
     //TODO Array<Room>
     if (!array.length) {

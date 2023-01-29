@@ -15,7 +15,7 @@ const Player = ({info, number}: any) => {
         <div className={`imgWrapper ${info.dead ? 'dead' : 'alive'}`}>
             <h4 className={info.roles.mafia || info.roles.don ? 'black' : 'red'}>{number}</h4>
             <div className={styleProps(info.roles)}/>
-            <img src={info.player.image || "/Herald.jpg"} alt={'k'}/>
+            <img src={info.player ? info.player.image : "/Herald.jpg"} alt={'k'}/>
         </div>
 
     )

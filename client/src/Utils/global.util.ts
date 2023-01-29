@@ -32,3 +32,13 @@ export function dayNightBg () {
         : (inlineStyle.background = 'url("/24.jpeg") center')
     return inlineStyle
 }
+
+export const defaultState = new Array(10).fill({
+    roles: {
+        mafia: false,
+        don: false,
+        sheriff: false,
+    },
+    dead: false,
+    player: 'herald',
+})

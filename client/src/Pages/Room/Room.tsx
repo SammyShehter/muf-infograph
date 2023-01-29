@@ -4,6 +4,7 @@ import Player from "../../Components/Player"
 import {BackendURL} from "../../Utils/global.util"
 import {useParams} from "react-router-dom"
 import {getPlayerData, getRoomState} from "../../Utils/axios.http"
+import { FullLoader } from "../../Components/Loader/Loader"
 
 function Room() {
     let params: any = useParams()
@@ -15,8 +16,10 @@ function Room() {
     const [state, setState] = useState([])
 
     useEffect(() => {
-        fetchRoomState()
-        socketRef.current = io(BackendURL)
+        if (!state.length && typeof id === "string") {
+            fetchRoomState(id)
+            socketRef.current = io(BackendURL)
+        }
     }, [])
 
     useEffect(() => {
@@ -25,12 +28,10 @@ function Room() {
         })
     }, [state, id])
 
-    const fetchRoomState = async () => {
-        if (!state.length && typeof id === "string") {
-            const roomState = await getRoomState(id as string)
-            const fullState = await populateState(roomState.data)
-            setState(fullState)
-        }
+    const fetchRoomState = async (id: string) => {
+        const roomState = await getRoomState(id)
+        const fullState = await populateState(roomState.data)
+        setState(fullState)
     }
 
     const populateState = async (
@@ -40,7 +41,7 @@ function Room() {
         const result: any = []
         unpopulatedState.forEach((item) => {
             const playerData = localStorage.getItem(item.player)
-            if (!playerData) {
+            if (!playerData && item.player !== 'herald') {
                 temp.push(item.player)
             }
             result.push({...item, player: JSON.parse(playerData as string)})
@@ -55,9 +56,9 @@ function Room() {
         return result
     }
 
-    const renderPlayers = () => {
-        if (!state.length) return <h2>Loading</h2>
-        return state.map((item: any, index) => {
+    const renderPlayers = (state: Array<any>) => {
+        if (!state.length) return <FullLoader />
+        return state.map((item: any, index: number) => {
             return <Player info={item} key={index} number={index + 1} />
         })
     }
@@ -66,7 +67,7 @@ function Room() {
         <>
             <div className="empty-space" />
             <div className="backgroundBlur">
-                <div className="App">{renderPlayers()}</div>
+                <div className="App">{renderPlayers(state)}</div>
             </div>
         </>
     )
