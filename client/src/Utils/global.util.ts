@@ -1,4 +1,6 @@
+import { Unpopulated_PlayerInfo } from "../Types"
 import {validateUser} from "./axios.http"
+import { HERALD } from "./const"
 
 const baseURL = "http://localhost"
 export const BackendURL = `${baseURL}:4000`
@@ -38,14 +40,14 @@ export function dayNightBg() {
     return inlineStyle
 }
 
-export const defaultState = new Array(10).fill({
+export const defaultState: Array<Unpopulated_PlayerInfo> = new Array(10).fill({
     roles: {
         mafia: false,
         don: false,
         sheriff: false,
     },
     dead: false,
-    player: "herald",
+    player: HERALD,
 })
 
 export function defineRoomNumber(id: string | undefined): string {

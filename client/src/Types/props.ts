@@ -43,9 +43,9 @@ export namespace Props {
     }
 
     export type Inputs = {
-        state: Array<Unpopulated_PlayerInfo>
+        roomState: Array<Unpopulated_PlayerInfo>
         players: Array<PlayerSelect>
-        setState: React.Dispatch<React.SetStateAction<Unpopulated_PlayerInfo[]>>
+        setRoomState: React.Dispatch<React.SetStateAction<Unpopulated_PlayerInfo[]>>
     }
 
     export type Rooms = {

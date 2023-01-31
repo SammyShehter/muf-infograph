@@ -1,7 +1,11 @@
 import {useState, useRef, useEffect} from "react"
 import io, {Socket} from "socket.io-client"
 import Player from "../../Components/Player"
-import {BackendURL, defineRoomNumber} from "../../Utils/global.util"
+import {
+    BackendURL,
+    defaultState,
+    defineRoomNumber,
+} from "../../Utils/global.util"
 import {useParams} from "react-router-dom"
 import {getPlayerData, getRoomState} from "../../Utils/axios.http"
 import {FullLoader} from "../../Components/Loader/Loader"
@@ -10,6 +14,7 @@ import {
     Populated_PlayerInfo,
     Unpopulated_PlayerInfo,
 } from "../../Types"
+import {HERALD} from "../../Utils/const"
 
 function Room() {
     const params = useParams()
@@ -18,7 +23,7 @@ function Room() {
 
     useEffect(() => {
         const id: string = defineRoomNumber(params.id)
-        if (!state.length && typeof id === "string") {
+        if (!state.length) {
             fetchRoomState(id)
             socketRef.current = io(BackendURL)
         }
@@ -42,16 +47,17 @@ function Room() {
     ): Promise<Array<Populated_PlayerInfo>> => {
         const temp: Array<string> = []
         const result: Array<Populated_PlayerInfo> = []
+        if (!unpopulatedState.length) unpopulatedState = defaultState
         unpopulatedState.forEach((item) => {
-            const playerData = localStorage.getItem(item.player)
-            if (!playerData && item.player !== "herald") {
+            const playerData = localStorage.getItem(item.player)!
+            if (!playerData && item.player !== HERALD) {
                 temp.push(item.player)
             }
-            result.push({...item, player: JSON.parse(playerData as string)})
+            result.push({...item, player: JSON.parse(playerData)})
         })
         if (temp.length) {
             const data = await getPlayerData(temp)
-            data.forEach((item: PlayerData) => {
+            data.forEach((item) => {
                 localStorage.setItem(item.code, JSON.stringify(item))
             })
             return populateState(unpopulatedState)
@@ -60,11 +66,12 @@ function Room() {
     }
 
     const renderPlayers = (state: Array<Populated_PlayerInfo>) => {
-        if (!state.length) return <FullLoader />
         return state.map((item: Populated_PlayerInfo, index: number) => {
             return <Player info={item} key={index} number={index + 1} />
         })
     }
+
+    if (!state.length) return <FullLoader />
 
     return (
         <>

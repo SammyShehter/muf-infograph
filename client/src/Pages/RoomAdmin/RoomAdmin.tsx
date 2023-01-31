@@ -17,23 +17,24 @@ const RoomAdmin = () => {
     const params = useParams()
     const socketRef = useRef<Socket>()
     const [roomNumber, setRoomNumber] = useState("1")
-    const [state, setState] = useState<Array<Unpopulated_PlayerInfo>>([])
+    const [roomState, setRoomState] = useState<Array<Unpopulated_PlayerInfo>>([])
     const [players, setPlayers] = useState<Array<PlayerSelect>>([])
     const [distribution, setDistribution] = useState(false)
 
     useEffect(() => {
         const id: string = defineRoomNumber(params.id)
         setRoomNumber(id)
-        if (!state.length && typeof id === "string") {
-            ;(async () =>
-                await Promise.all([fetchRoomState(id), fetchPlayers()]))()
+        if (!roomState.length) {
+            apiRequests(id)
             socketRef.current = io(BackendURL)
         }
     }, [])
 
+    const apiRequests = async (id: string) => Promise.all([fetchRoomState(id), fetchPlayers()])
+
     const fetchRoomState = async (roomNumber: string) => {
         const roomState = await getRoomState(roomNumber)
-        setState(roomState)
+        setRoomState(roomState)
     }
 
     const fetchPlayers = async () => {
@@ -48,10 +49,10 @@ const RoomAdmin = () => {
             return socketRef.current!.emit(`room-${roomNumber}`, defaultState)
         }
 
-        return socketRef.current!.emit(`room-${roomNumber}`, state)
+        return socketRef.current!.emit(`room-${roomNumber}`, roomState)
     }
 
-    if (!state.length || !players.length) return <FullLoader />
+    if (!roomState.length || !players.length) return <FullLoader />
 
     return (
         <>
@@ -77,8 +78,8 @@ const RoomAdmin = () => {
                         </div>
                     </div>
                     <Inputs
-                        state={state}
-                        setState={setState}
+                        roomState={roomState}
+                        setRoomState={setRoomState}
                         players={players}
                     />
                     <button type="submit" className="submit">
