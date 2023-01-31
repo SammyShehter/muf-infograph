@@ -1,28 +1,25 @@
-import { useContext } from "react"
+import {useContext} from "react"
 import AuthContext from "../../../Context/AuthContext"
+import {Props} from "../../../Types"
 
-export default function AdminHeader({open, setOpen}: any) {
+export default function AdminHeader({open, setOpen}: Props.AdminHeader) {
     const {logout} = useContext(AuthContext)
     return (
         <div className="l-header">
-        <div className="l-header__inner clearfix">
-            <div
-                className={`c-header-icon js-hamburger ${
-                    open && "is-opened"
-                }`}
-                onClick={() => setOpen(!open)}
-            >
+            <div className="l-header__inner clearfix">
                 <div
-                    className={`hamburger-toggle ${
+                    className={`c-header-icon js-hamburger ${
                         open && "is-opened"
                     }`}
+                    onClick={() => setOpen(!open)}
                 >
-                    <span className="bar-top"></span>
-                    <span className="bar-mid"></span>
-                    <span className="bar-bot"></span>
+                    <div className={`hamburger-toggle ${open && "is-opened"}`}>
+                        <span className="bar-top"></span>
+                        <span className="bar-mid"></span>
+                        <span className="bar-bot"></span>
+                    </div>
                 </div>
-            </div>
-            {/* <div className="c-header-icon has-dropdown">
+                {/* <div className="c-header-icon has-dropdown">
                 <span className="c-badge c-badge--red c-badge--header-icon animated swing">
                     13
                 </span>
@@ -48,10 +45,10 @@ export default function AdminHeader({open, setOpen}: any) {
                 </div>
 
             </div> */}
-            <div className="c-header-icon logout" onClick={logout}>
+                <div className="c-header-icon logout" onClick={logout}>
                     <i className="fa fa-power-off"></i>
                 </div>
+            </div>
         </div>
-    </div>
     )
 }

@@ -1,9 +1,10 @@
 import AvatarEditor from "react-avatar-editor"
+import {Props} from "../../Types"
 import Button from "../Button"
 // import jpeg from 'jpeg-js';
 
-const ImageEditor = ({picture, setPicture}: any) => {
-    var editor: any = ""
+const ImageEditor = ({picture, setPicture}: Props.ImageEdit) => {
+    let editor: any
 
     const handleSlider = (e: any) => {
         setPicture({
@@ -84,10 +85,7 @@ const ImageEditor = ({picture, setPicture}: any) => {
                         onChange={(e) => handleSlider(e)}
                         className="input"
                     ></input>
-                    <Button
-                        text="Cancel"
-                        onClick={handleCancel}
-                    />
+                    <Button text="Cancel" onClick={handleCancel} />
                     <br />
                     <Button text="Save" onClick={handleSave} />
                 </div>

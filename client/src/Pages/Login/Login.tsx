@@ -1,4 +1,4 @@
-import {FormEvent, useContext, useEffect, useState} from "react"
+import React, {FormEvent, useContext, useEffect, useState} from "react"
 import {loginPostReq} from "../../Utils/axios.http"
 import AuthContext from "../../Context/AuthContext"
 import {FullLoader} from "../../Components/Loader/Loader"
@@ -6,20 +6,21 @@ import {Navigate} from "react-router-dom"
 import {dayNightBg, userChecks} from "../../Utils/global.util"
 import Button from "../../Components/Button"
 import Input from "../../Components/Input"
+import {LoginForm} from "../../Types"
 
 export const Login = () => {
     const {isAuthenticated, login, token, logout} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<LoginForm>({
         username: "",
         password: "",
     })
 
     useEffect(() => {
-        userChecks(login, token, isAuthenticated, setLoading, logout)
+        userChecks(login, token, setLoading, logout)
     }, [])
 
-    const changeHandler = (event: any) => {
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setForm({
             ...form,
             [event.currentTarget.name]: event.currentTarget.value,

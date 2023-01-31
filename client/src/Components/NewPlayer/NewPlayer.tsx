@@ -1,25 +1,26 @@
-import {FormEvent, useContext, useState} from "react"
+import React, {FormEvent, useContext, useState} from "react"
 import Button from "../Button"
 import ImageEdit from "../ImageEdit"
 import Input from "../Input"
 import AuthContext from "../../Context/AuthContext"
 import {newPlayerReq} from "../../Utils/axios.http"
+import {Picture} from "../../Types"
 
 export default function NewPlayer() {
     const {token} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState("")
     const [name, setName] = useState("")
-    const [picture, setPicture] = useState({
+    const [picture, setPicture] = useState<Picture>({
         cropperOpen: false,
         img: "",
         zoom: 2,
         croppedImg: "/Herald.jpg",
     })
 
-    const handleFileChange = (e: any) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMessage("")
-        let url = URL.createObjectURL(e.target.files[0])
+        let url = URL.createObjectURL(e.target.files![0])
         setPicture({
             ...picture,
             img: url,
@@ -27,10 +28,12 @@ export default function NewPlayer() {
         })
     }
 
-    const changeHandler = (event: any) => {
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMessage("")
         setName(event.currentTarget.value)
     }
+
+    // TODO add error handler
     const newPlayerHandler = async (e: FormEvent) => {
         try {
             e.preventDefault()

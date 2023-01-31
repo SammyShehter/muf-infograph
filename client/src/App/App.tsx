@@ -1,8 +1,4 @@
-import {
-    BrowserRouter as Router,
-    Route,
-    Routes,
-} from "react-router-dom"
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import Room from "../Pages/Room"
 import Admin from "../Pages/Admin"
 import "../Styles/main.scss"
@@ -12,9 +8,8 @@ import ProtectedRoute from "../Components/ProtectedRoute"
 import AuthContext from "../Context/AuthContext"
 import RoomAdmin from "../Pages/RoomAdmin"
 import FrontPage from "../Pages/FrontPage"
-import NewPlayer from "../Components/NewPlayer"
 
-const App = () => {
+export default function App () {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [token, setToken] = useState("")
 
@@ -54,5 +49,3 @@ const App = () => {
         </AuthContext.Provider>
     )
 }
-
-export default App

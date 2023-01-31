@@ -1,18 +1,11 @@
-import {useEffect, useState} from "react"
-import Rooms from "../Rooms"
+import {SideBarStruct} from "../../../Types"
 
 export default function AdminContent({
     content,
 }: {
-    content: Array<{
-        title: string
-        icon: string
-        active: boolean
-        subMenu: never[]
-        content: JSX.Element
-    }>
+    content: Array<SideBarStruct>
 }) {
-    const show = content.filter((item: any) => item.active)
+    const show = content.filter((item: SideBarStruct) => item.active)
     if (!show.length) show.push(content[0])
 
     return (

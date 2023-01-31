@@ -1,14 +1,10 @@
-const Player = ({info, number}: any) => {
-    const styleProps = (info: any) => {
-        let styledObj = ''
-        for (const prop in info) {
+import { Roles, Props, PlayerData } from "../../Types"
 
-            if (info.hasOwnProperty(prop) && info[prop] === true && prop !== 'dead') {
-                styledObj += ` ${prop}`
-            }
+export default function Player ({info, number}: Props.Player){
+    const styleProps = (roles: Roles) => {
+        for (const prop in roles) {
+            if (roles[prop as keyof Roles]) return prop
         }
-
-        return styledObj
     }
 
     return (
@@ -20,5 +16,3 @@ const Player = ({info, number}: any) => {
 
     )
 }
-
-export default Player

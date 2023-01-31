@@ -1,4 +1,6 @@
-export default function Input({type, name, label, onChange}: any) {
+import {Props} from "../../Types"
+
+export default function Input({type, name, label, onChange}: Props.Input) {
     return (
         <div className="group">
             <input type={type} name={name} onChange={onChange} required />

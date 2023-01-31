@@ -1,4 +1,6 @@
-export default function SideBarElem({title, icon, active, toggle}: any) {
+import { Props } from "../../Types";
+
+export default function SideBarElem({title, icon, active, toggle}: Props.SideBarElem) {
     return (
         <li
             className={`c-menu__item${active ? " is-active" : ""}`}

@@ -1,17 +1,11 @@
-import {ReactNode} from "react"
+import {Props} from "../../Types"
 
 export default function Button({
     text,
     type = "button",
     disabled = false,
     onClick = () => {},
-}: {
-    children?: ReactNode
-    text?: string
-    type?: "button" | "submit" | "reset"
-    disabled?: boolean
-    onClick?: any
-}) {
+}: Props.Button) {
     return (
         <button
             onClick={onClick}
