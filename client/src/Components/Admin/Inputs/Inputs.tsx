@@ -18,7 +18,7 @@ function Input({index, stateChange, roomState, name, rName}: any) {
                 name={name}
                 id={`${name}${index}`}
                 onChange={(e) => stateChange(e, index)}
-                defaultChecked={roomState[index].roles[name]}
+                checked={roomState[index].roles[name]}
             />
             <label htmlFor={`${name}${index}`}>{rName}</label>
         </div>
