@@ -9,7 +9,7 @@ import {
     Unpopulated_PlayerInfo,
 } from "../../../Types"
 
-function Input({index, stateChange, roomState, name, rName}: any) {
+function Input({index, stateChange, roomState, name, rName, checked}: any) {
     return (
         <div>
             <input
@@ -18,7 +18,7 @@ function Input({index, stateChange, roomState, name, rName}: any) {
                 name={name}
                 id={`${name}${index}`}
                 onChange={(e) => stateChange(e, index)}
-                checked={roomState[index].roles[name]}
+                checked={checked}
             />
             <label htmlFor={`${name}${index}`}>{rName}</label>
         </div>
@@ -41,7 +41,11 @@ export default function Inputs({
         e: React.ChangeEvent<HTMLInputElement>,
         index: number
     ) => {
-        roomState[index].dead = e.target.checked
+        roomState[index].vote = false
+        roomState[index].dead = false
+        // @ts-ignore
+        roomState[index][e.target.name] = e.target.checked
+        setClick(!click)
         setRoomState(roomState)
     }
 
@@ -96,6 +100,7 @@ export default function Inputs({
                     index={index}
                     stateChange={stateChange}
                     roomState={roomState}
+                    checked={roomState[index].roles.mafia}
                 />
                 <Input
                     name="don"
@@ -103,6 +108,7 @@ export default function Inputs({
                     index={index}
                     stateChange={stateChange}
                     roomState={roomState}
+                    checked={roomState[index].roles.don}
                 />
                 <Input
                     name="sheriff"
@@ -110,6 +116,7 @@ export default function Inputs({
                     index={index}
                     stateChange={stateChange}
                     roomState={roomState}
+                    checked={roomState[index].roles.sheriff}
                 />
                 <Input
                     name="dead"
@@ -117,6 +124,15 @@ export default function Inputs({
                     index={index}
                     stateChange={playerStatus}
                     roomState={roomState}
+                    checked={roomState[index].dead}
+                />
+                <Input
+                    name="vote"
+                    rName="Выставлен"
+                    index={index}
+                    stateChange={playerStatus}
+                    roomState={roomState}
+                    checked={roomState[index].vote}
                 />
                 {populateOptions(index)}
             </div>

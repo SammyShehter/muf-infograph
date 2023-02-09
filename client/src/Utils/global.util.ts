@@ -1,5 +1,5 @@
-import { Unpopulated_PlayerInfo } from "../Types"
-import {validateUser} from "./axios.http"
+import { PlayerSelect, Unpopulated_PlayerInfo } from "../Types"
+import {getAllPlayersNames, validateUser} from "./axios.http"
 import { HERALD } from "./const"
 
 const baseURL = "http://localhost"
@@ -47,6 +47,7 @@ export const defaultState: Array<Unpopulated_PlayerInfo> = new Array(10).fill({
         sheriff: false,
     },
     dead: false,
+    vote: false,
     player: HERALD,
 })
 
@@ -55,4 +56,11 @@ export function defineRoomNumber(id: string | undefined): string {
     const asNumber = +id
     if (Number.isNaN(asNumber)) return "1"
     return isFinite(asNumber) || asNumber < 1 || asNumber > 8 ? id : "1"
+}
+
+export const fetchPlayers = async (
+    setPlayers: React.Dispatch<React.SetStateAction<PlayerSelect[]>>
+) => {
+    const allPlayers = await getAllPlayersNames()
+    setPlayers(allPlayers)
 }

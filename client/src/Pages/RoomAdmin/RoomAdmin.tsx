@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react"
 import io, {Socket} from "socket.io-client"
 import {useParams} from "react-router-dom"
-import {getAllPlayersNames, getRoomState} from "../../Utils/axios.http"
+import {getRoomState} from "../../Utils/axios.http"
 import {Link} from "react-router-dom"
 import Button from "../../Components/Button"
 import Inputs from "../../Components/Admin/Inputs"
@@ -10,6 +10,7 @@ import {
     BackendURL,
     defaultState,
     defineRoomNumber,
+    fetchPlayers,
 } from "../../Utils/global.util"
 import {Unpopulated_PlayerInfo, PlayerSelect} from "../../Types"
 
@@ -17,7 +18,9 @@ const RoomAdmin = () => {
     const params = useParams()
     const socketRef = useRef<Socket>()
     const [roomNumber, setRoomNumber] = useState("1")
-    const [roomState, setRoomState] = useState<Array<Unpopulated_PlayerInfo>>([])
+    const [roomState, setRoomState] = useState<Array<Unpopulated_PlayerInfo>>(
+        []
+    )
     const [players, setPlayers] = useState<Array<PlayerSelect>>([])
     const [distribution, setDistribution] = useState(false)
 
@@ -30,16 +33,12 @@ const RoomAdmin = () => {
         }
     }, [])
 
-    const apiRequests = async (id: string) => Promise.all([fetchRoomState(id), fetchPlayers()])
+    const apiRequests = async (id: string) =>
+        Promise.all([fetchRoomState(id), fetchPlayers(setPlayers)])
 
     const fetchRoomState = async (roomNumber: string) => {
         const roomState = await getRoomState(roomNumber)
         setRoomState(roomState)
-    }
-
-    const fetchPlayers = async () => {
-        const allPlayers = await getAllPlayersNames()
-        setPlayers(allPlayers)
     }
 
     const onFormSubmit = (e: React.FormEvent) => {

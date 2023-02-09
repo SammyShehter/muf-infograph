@@ -13,11 +13,13 @@ export type PlayerData = {
 export type  Unpopulated_PlayerInfo = {
     roles: Roles
     dead: boolean
+    vote: boolean
     player: string
 }
 
 export type  Populated_PlayerInfo = {
     roles: Roles
     dead: boolean
+    vote: boolean
     player: PlayerData
 }

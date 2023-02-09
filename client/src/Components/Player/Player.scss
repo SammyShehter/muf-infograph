@@ -92,3 +92,12 @@
     filter: drop-shadow(2px 4px 6px black);
   }
 }
+
+.vote {
+  margin-top: 0px;
+  transition: all 500ms;
+
+  & img {
+    filter: drop-shadow(2px 4px 6px gold);
+  }
+}

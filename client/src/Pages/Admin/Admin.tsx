@@ -3,6 +3,7 @@ import AdminContent from "../../Components/Admin/Content"
 import AdminHeader from "../../Components/Admin/Header"
 import Rooms from "../../Components/Admin/Rooms"
 import NewPlayer from "../../Components/NewPlayer"
+import PlayersManage from "../../Components/PlayersManage"
 import SideBar from "../../Components/SideBar"
 import { SideBarStruct } from "../../Types"
 
@@ -15,6 +16,13 @@ export default function Admin() {
             active: true,
             subMenu: [],
             content: <Rooms admin={true} />,
+        },
+        {
+            title: "Players Management",
+            icon: "fa-users",
+            active: false,
+            subMenu: [],
+            content: <PlayersManage />,
         },
         {
             title: "New Player",
