@@ -1,0 +1,133 @@
+.imgWrapper {
+  position: relative;
+  width: 113px;
+  height: 140px;
+  background-color: lightblue;
+
+
+  //NUMBERS
+  h4 {
+    position: absolute;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    font-size: x-large;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    top: -7px;
+    left: -7px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  .red {
+    background: red;
+  }
+
+  .black {
+    background: black;
+  }
+
+
+  //ROLES
+  .sheriff {
+    z-index: 2;
+    position: absolute;
+    background: url("sheriff.png") no-repeat;
+    width: 70px;
+    height: 70px;
+    bottom: -15px;
+    left: -25px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  .don {
+    z-index: 2;
+    position: absolute;
+    background: url("don.png") no-repeat;
+    width: 100px;
+    height: 100px;
+    bottom: -35px;
+    left: -15px;
+    filter: drop-shadow(2px 4px 6px black);
+    transform: rotate(8deg);
+
+  }
+
+  .mafia {
+    z-index: 2;
+    position: absolute;
+    bottom: -45px;
+    left: -15px;
+    background: url("mafia.png") no-repeat;
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  .player-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .6);
+    color: #fff;
+
+      .player-number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        background-color: #27AE60;
+        border-radius: 50%;
+        font-size: 9px;
+        margin: 0 4px 0;
+      }
+
+      .player-name {
+        font-size: 11px;
+      }
+  }
+}
+
+
+.dead {
+  margin-top: 100px;
+  transition: all 500ms;
+
+  & img {
+    filter: grayscale(100%) drop-shadow(2px 4px 6px black);
+  }
+}
+
+.alive {
+  margin-top: 0px;
+  transition: all 500ms;
+
+  & img {
+    filter: drop-shadow(2px 4px 6px black);
+  }
+}
+
+.vote {
+  margin-top: 0px;
+  transition: all 500ms;
+
+  & img {
+    filter: drop-shadow(2px 4px 6px gold);
+  }
+}
