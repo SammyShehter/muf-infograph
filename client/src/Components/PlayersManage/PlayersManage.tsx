@@ -17,7 +17,6 @@ export default function PlayersManage() {
     const [selected, setSelected] = useState({})
     const [players, setPlayers] = useState<Array<PlayerSelect>>([])
     useEffect(() => {
-        // call for all players
         fetchPlayers(setPlayers)
     }, [])
 
@@ -25,8 +24,6 @@ export default function PlayersManage() {
         setSelected((selected: any) => {
             selected[code as keyof typeof selected] =
                 !selected[code as keyof typeof selected]
-                // console.log(selected);
-                
             return selected
         })
     }
@@ -47,5 +44,8 @@ export default function PlayersManage() {
 
     if (!players) return <Loader />
 
-    return <>{renderPlayersManage()}</>
+    return <>
+    Selected: {Object.keys(selected)}<br/>
+    {renderPlayersManage()}
+    </>
 }
