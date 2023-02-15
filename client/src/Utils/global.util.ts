@@ -2,9 +2,9 @@ import { PlayerSelect, Unpopulated_PlayerInfo } from "../Types"
 import {getAllPlayersNames, validateUser} from "./axios.http"
 import { HERALD } from "./const"
 
-const baseURL = "http://localhost"
-export const BackendURL = `${baseURL}:4000`
-export const AuthURL = `${baseURL}:10000`
+const baseURL = "http://116.202.21.186"
+export const BackendURL = `${baseURL}:4001`
+export const AuthURL = `${baseURL}:10001`
 
 export const userChecks = async (
     login: Function,

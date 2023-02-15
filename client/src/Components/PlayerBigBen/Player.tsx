@@ -7,17 +7,19 @@ export default function Player ({info, number}: Props.Player){
         }
     }
 
-    return (
-        <div className={`imgWrapper ${info.dead ? "dead" : "alive"} ${info.vote ? "vote" : "noVote"}`}>
-            {/* <h4 className={info.roles.mafia || info.roles.don ? "black" : "red"}>{number}</h4> */}
-            <div className={styleProps(info.roles)}/>
-            {/* <img src={info.player ? info.player.image : "/Herald.jpg"} alt={"k"}/> */}
-            <img src="https://i.ibb.co/Rcxf3Y0/image.png" alt='#'/>
-            <div className="player-bottom">
-                <div className="player-number">{number}</div>
-                <div className="player-name">Предательница</div>
-            </div>
-        </div>
+    console.log(styleProps(info.roles))
 
+    return (
+        <div className="player-wrapper">
+            <div className={`player-card mafia ${info.dead ? "dead" : "alive"} ${info.vote ? "vote" : "noVote"}`}>
+                {/* <h4 className={info.roles.mafia || info.roles.don ? "black" : "red"}>{number}</h4> */}
+                <div className={styleProps(info.roles)}/>
+                <img src={info.player ? info.player.image : "/Herald.jpg"} alt='#'/>
+            </div>
+            <div className="player-bottom">
+                    <div className="player-number">{number}</div>
+                    <div className="player-name"></div>
+                </div>
+        </div>
     )
 }
