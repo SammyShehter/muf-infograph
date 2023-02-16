@@ -7,17 +7,16 @@ export default function Player ({info, number}: Props.Player){
         }
     }
 
-    console.log(styleProps(info.roles))
+    console.log(info)
 
     return (
         <div className="player-wrapper">
-            <div className={`player-card mafia ${info.dead ? "dead" : "alive"} ${info.vote ? "vote" : "noVote"}`}>
-                {/* <h4 className={info.roles.mafia || info.roles.don ? "black" : "red"}>{number}</h4> */}
+            <div className={`player-card citizen ${info.roles.don ? "don" : ""} ${info.roles.mafia ? "mafia" : ""} ${info.roles.sheriff ? "sheriff" : ""} ${info.dead ? "dead" : "alive"} ${info.vote ? "vote" : "noVote"}`}>
                 <div className={styleProps(info.roles)}/>
                 <img src={info.player ? info.player.image : "/Herald.jpg"} alt='#'/>
             </div>
             <div className="player-bottom">
-                    <div className="player-number">{number}</div>
+                    <div className={`player-number ${info.roles.don ? "don" : ""} ${info.roles.mafia ? "mafia" : ""} ${info.roles.sheriff ? "sheriff" : ""}`}>{number}</div>
                     <div className="player-name"></div>
                 </div>
         </div>

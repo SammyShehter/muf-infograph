@@ -1,7 +1,7 @@
 .player-wrapper {
   position: relative;
   width: 150px;
-  height: 175px;
+  height: 160px;
   overflow-y: hidden;
 
   .player-bottom {
@@ -20,12 +20,25 @@
         align-items: center;
         width: 20px;
         height: 20px;
-        background-color: $mafia-color;
         border-radius: 50%;
         font-size: 11px;
         font-weight: bold;
         margin: 0 5px 0;
         color: #000;
+        background-color: $citizen-color;
+
+        &.mafia {
+          background-color: $mafia-color;
+          color: #fff;
+        }
+        &.don {
+          background-color: $don-color;
+          color: #fff;
+        }
+        &.sheriff {
+          background-color: $sheriff-color;
+          color: #fff;
+        }
       }
 
       .player-name {
@@ -38,19 +51,19 @@
     position: relative;
     max-width: 100%;
     width: 150px;
-    height: 175px;
+    height: 160px;
     background-size: cover;
   
+    &.citizen {
+      background-image: url('./citizen-bg.jpg');
+    }
+
     &.sheriff {
       background-image: url('./sheriff-bg.jpg');
     }
 
     &.don {
       background-image: url('./don-bg.jpg');
-    }
-
-    &.citizen {
-      background-image: url('./citizen-bg.jpg');
     }
 
     &.mafia {
@@ -139,7 +152,7 @@
     //   height: 100px;
     //   filter: drop-shadow(2px 4px 6px black);
     // }
-  
+
     img {
       width: 100%;
       height: 100%;
