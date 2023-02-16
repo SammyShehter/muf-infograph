@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from "react"
 import io, {Socket} from "socket.io-client"
-import Player from "../../Components/Player"
+import Player from "../../Components/PlayerBigBen"
 import {
     BackendURL,
     defaultState,
@@ -78,7 +78,6 @@ function Room() {
 
     return (
         <>
-            <div className="empty-space" />
             <div className="backgroundBlur">
                 <div className="App">{renderPlayers(state)}</div>
             </div>

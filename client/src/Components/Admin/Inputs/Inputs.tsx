@@ -120,7 +120,7 @@ export default function Inputs({
                 />
                 <Input
                     name="dead"
-                    rName="Мертв"
+                    rName="Убит"
                     index={index}
                     stateChange={playerStatus}
                     roomState={roomState}
@@ -128,7 +128,7 @@ export default function Inputs({
                 />
                 <Input
                     name="vote"
-                    rName="Выставлен"
+                    rName="Заголосован"
                     index={index}
                     stateChange={playerStatus}
                     roomState={roomState}
