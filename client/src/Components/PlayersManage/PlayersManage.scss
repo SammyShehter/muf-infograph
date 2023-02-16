@@ -1,0 +1,34 @@
+.playersManagement {
+    .header {
+        padding: 1vh;
+        align-items: baseline;
+        justify-content: space-between;
+        .selected {
+            color: black;
+        }
+        .group {
+            margin: 0;
+            width: 25vw;
+        }
+        .button{
+            width: 10vw;
+        }
+    }
+    .inputs {
+        .player {
+            padding: 2vh 1vw;
+            p{
+                cursor: pointer;
+                color: black;
+                padding: 0 1vw;
+            }
+            input {
+                padding: 2vh;
+            }
+
+            &:nth-child(odd) {
+                background: lightblue;
+            }
+        }
+    }
+}

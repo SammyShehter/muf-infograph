@@ -34,6 +34,15 @@ class PlayerController {
         }
     }
 
+    deletePlayersData = async(req: Request, res: Response) => {
+        try {
+            const data = await PlayerService.deletePlayersData(req.codes)
+            return handleSuccess(data, res)
+        } catch (error) {
+            return handleError(error ,req, res)
+        }
+    }
+
 }
 
 export default new PlayerController()

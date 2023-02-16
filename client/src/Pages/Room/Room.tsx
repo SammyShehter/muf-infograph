@@ -43,8 +43,9 @@ function Room() {
     }
 
     const populateState = async (
-        unpopulatedState: Array<Unpopulated_PlayerInfo>
+        unpopulatedState: Array<Unpopulated_PlayerInfo>, attempt: number = 0
     ): Promise<Array<Populated_PlayerInfo>> => {
+        attempt = attempt + 1 
         const temp: Array<string> = []
         const result: Array<Populated_PlayerInfo> = []
         if (!unpopulatedState.length) unpopulatedState = defaultState
@@ -55,12 +56,14 @@ function Room() {
             }
             result.push({...item, player: JSON.parse(playerData)})
         })
-        if (temp.length) {
+        if (temp.length && attempt < 2) {
             const data = await getPlayerData(temp)
+            console.log(data);
+            
             data.forEach((item) => {
                 localStorage.setItem(item.code, JSON.stringify(item))
             })
-            return populateState(unpopulatedState)
+            return populateState(unpopulatedState, attempt)
         }
         return result
     }

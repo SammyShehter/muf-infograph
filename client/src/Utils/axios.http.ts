@@ -40,6 +40,19 @@ export async function getPlayerData(
     }
 }
 
+export async function deletePlayers(
+    codesArray: Array<string>
+): Promise<Array<PlayerData>> {
+    try {
+        const response = await axios.post(`${BackendURL}/players/delete`, {
+            codes: codesArray,
+        })
+        return response.data.data
+    } catch (error) {
+        return []
+    }
+}
+
 export async function loginPostReq(
     form: LoginForm
 ): Promise<{message: string; data: any}> {

@@ -25,6 +25,8 @@ class PlayerService {
     allPlayers = async () => this.db.allPlayers()
 
     fetchPlayersData = async (codes: Array<string>) => this.db.fetchPlayersData(codes)
+
+    deletePlayersData = async (codes: Array<string>) => this.db.deletePlayersData(codes)
 }
 
 export default new PlayerService(Mongo)
