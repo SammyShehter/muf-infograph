@@ -7,8 +7,6 @@ export default function Player ({info, number}: Props.Player){
         }
     }
 
-    console.log(info)
-
     return (
         <div className="player-wrapper">
             <div className={`player-card citizen ${info.roles.don ? "don" : ""} ${info.roles.mafia ? "mafia" : ""} ${info.roles.sheriff ? "sheriff" : ""} ${info.dead ? "dead" : "alive"} ${info.vote ? "vote" : "noVote"}`}>
@@ -17,7 +15,7 @@ export default function Player ({info, number}: Props.Player){
             </div>
             <div className="player-bottom">
                     <div className={`player-number ${info.roles.don ? "don" : ""} ${info.roles.mafia ? "mafia" : ""} ${info.roles.sheriff ? "sheriff" : ""}`}>{number}</div>
-                    <div className="player-name"></div>
+                    <div className="player-name">{info.player?.name}</div>
                 </div>
         </div>
     )
