@@ -31,7 +31,7 @@ const io = new Server(http, {
     },
 })
 
-const rooms = new Array(7)
+const rooms = new Array(8)
     .fill(0)
     .map((_: number, index: number) => `room-${index + 1}`)
 const callback = (roomNumber: string) => (array: Array<any>) => {

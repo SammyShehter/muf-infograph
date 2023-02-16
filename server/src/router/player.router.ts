@@ -14,7 +14,14 @@ router.get("/all", PlayerController.allPlayers)
 
 router.post(
     "/data",
-    PlayerMiddleware.playerDataChecks,
+    PlayerMiddleware.playerDataChecks(10),
     PlayerMiddleware.validCodeStrings,
     PlayerController.fetchPlayersData
+)
+
+router.post(
+    "/delete",
+    PlayerMiddleware.playerDataChecks(99),
+    PlayerMiddleware.validCodeStrings,
+    PlayerController.deletePlayersData
 )

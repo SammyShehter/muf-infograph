@@ -32,11 +32,11 @@ class PlayerMiddleware extends CommonValidator {
             .withMessage(`Please send the body as a base64 string`),
     ])
 
-    playerDataChecks = this.validate([
+    playerDataChecks = (max: number) => this.validate([
         body("codes")
             .exists()
             .withMessage(`Please add codes to the request: req.body.name`)
-            .isArray({max: 10})
+            .isArray({max})
             .withMessage(`Please sent the codes as array of 10 strings`),
     ])
 

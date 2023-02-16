@@ -75,8 +75,11 @@ class Mongo {
 
     fetchPlayersData = async (codes: Array<string>) =>
         this.playerStorage
-            .find({code: {$in: codes}}, {_id: 0, code: 1, image: 1})
+            .find({code: {$in: codes}}, {_id: 0, code: 1, image: 1, name: 1})
             .exec()
+
+    deletePlayersData = async (codes: Array<string>) =>
+        this.playerStorage.deleteMany({code: {$in: codes}}).exec()
 }
 
 export default new Mongo()

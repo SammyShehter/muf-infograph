@@ -1,4 +1,4 @@
-import { PlayerSelect, Unpopulated_PlayerInfo } from "../Types"
+import { Unpopulated_PlayerInfo } from "../Types"
 import {getAllPlayersNames, validateUser} from "./axios.http"
 import { HERALD } from "./const"
 
@@ -59,7 +59,7 @@ export function defineRoomNumber(id: string | undefined): string {
 }
 
 export const fetchPlayers = async (
-    setPlayers: React.Dispatch<React.SetStateAction<PlayerSelect[]>>
+    setPlayers: React.Dispatch<React.SetStateAction<any[]>>
 ) => {
     const allPlayers = await getAllPlayersNames()
     setPlayers(allPlayers)
