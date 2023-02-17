@@ -31,14 +31,17 @@
         &.mafia {
           background-color: $mafia-color;
           color: #fff;
+          border-radius: 8px;
         }
         &.don {
           background-color: $don-color;
           color: #fff;
+          border-radius: 8px;
         }
         &.sheriff {
           background-color: $sheriff-color;
           color: #fff;
+          border-radius: 8px;
         }
       }
 
