@@ -58,6 +58,10 @@ const RoomAdmin = () => {
             <Link to={`/admin`}>
                 <Button text={`Back to Admin Dashboard`} />
             </Link>
+            {/* <Button 
+                text={`Reset room state`}
+                onClick={() => {setRoomState(defaultState)}}
+            /> */}
             <div className="center direction-col">
                 <h1>Room #{roomNumber}</h1>
                 <form

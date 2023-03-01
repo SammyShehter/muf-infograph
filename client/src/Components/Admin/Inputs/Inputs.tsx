@@ -10,6 +10,7 @@ import {
 } from "../../../Types"
 
 function Input({index, stateChange, roomState, name, rName, checked}: any) {
+
     return (
         <div>
             <input
