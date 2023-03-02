@@ -2,7 +2,7 @@
   position: relative;
   width: 150px;
   height: 160px;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 
   .player-bottom {
     position: absolute;
@@ -53,6 +53,16 @@
     width: 150px;
     height: 160px;
     background-size: cover;
+
+    .player-time {
+      transition: 1.5s;
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      height: 6px;
+      width: 100%;
+      background-color: #fff;
+    }
   
     &.citizen {
       background-image: url('./citizen-bg.jpg');
@@ -91,67 +101,6 @@
       width: 14px;
       height: 12px;
     }
-    //NUMBERS
-    // h4 {
-    //   position: absolute;
-    //   z-index: 3;
-    //   width: 40px;
-    //   height: 40px;
-    //   font-size: x-large;
-    //   border-radius: 50%;
-    //   color: white;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   margin: 0;
-    //   top: -7px;
-    //   left: -7px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    // }
-
-    // .red {
-    //   background: red;
-    // }
-  
-    // .black {
-    //   background: black;
-    // }
-
-    //ROLES
-    // .sheriff {
-    //   z-index: 2;
-    //   position: absolute;
-    //   background: url("sheriff.png") no-repeat;
-    //   width: 70px;
-    //   height: 70px;
-    //   bottom: -15px;
-    //   left: -25px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    // }
-  
-    // .don {
-    //   z-index: 2;
-    //   position: absolute;
-    //   background: url("don.png") no-repeat;
-    //   width: 100px;
-    //   height: 100px;
-    //   bottom: -35px;
-    //   left: -15px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    //   transform: rotate(8deg);
-  
-    // }
-  
-    // .mafia {
-    //   z-index: 2;
-    //   position: absolute;
-    //   bottom: -45px;
-    //   left: -15px;
-    //   background: url("mafia.png") no-repeat;
-    //   width: 100px;
-    //   height: 100px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    // }
 
     img {
       width: 100%;
