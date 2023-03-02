@@ -1,0 +1,67 @@
+.timer-game {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: rgb(100, 197, 197);
+  padding: 20px 0;
+}
+
+.timer {
+  font-size: 70px;
+  margin-bottom: 30px;
+}
+
+.buttons button {
+  font-size: 20px;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: rgb(145, 221, 221);
+}
+
+.buttons button:active {
+  background-color: rgb(122, 187, 187);
+  transform: translate(2px, 1px);
+}
+
+.text {
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text input {
+  margin: 0 20px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 16px;
+  width: 50px;
+}
+
+.player-card {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  background-color: lightpink;
+  margin: 0 auto;
+
+  .timer-line {
+    transition: width 1.5s linear;
+    position: absolute;
+    left: 0;
+    bottom:0;
+    height: 2px;
+    background-color: red;
+  }
+}

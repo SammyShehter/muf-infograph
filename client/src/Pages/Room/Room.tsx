@@ -15,6 +15,7 @@ import {
     Unpopulated_PlayerInfo,
 } from "../../Types"
 import {HERALD} from "../../Utils/const"
+import Timer from "../../Components/Timer/Timer"
 
 function Room() {
     const params = useParams()
@@ -76,8 +77,10 @@ function Room() {
 
     if (!state.length) return <FullLoader />
 
+
     return (
-        <>
+        <>  
+            <Timer />
             <div className="backgroundBlur">
                 <div className="App">{renderPlayers(state)}</div>
             </div>
