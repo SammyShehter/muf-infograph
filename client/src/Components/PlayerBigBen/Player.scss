@@ -1,8 +1,9 @@
 .player-wrapper {
   position: relative;
-  width: 150px;
-  height: 160px;
-  overflow-y: hidden;
+  width: 210px;
+  height: 190px;
+  overflow: hidden;
+  border-radius: 10px;
 
   .player-bottom {
     position: absolute;
@@ -18,10 +19,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
-        font-size: 11px;
+        font-size: 14px;
         font-weight: bold;
         margin: 0 5px 0;
         color: #000;
@@ -42,7 +43,7 @@
       }
 
       .player-name {
-        font-size: 15px;
+        font-size: 18px;
         color: #fff;
       }
   }
@@ -50,9 +51,10 @@
   .player-card {
     position: relative;
     max-width: 100%;
-    width: 150px;
-    height: 160px;
+    width: 210px;
+    height: 190px;
     background-size: cover;
+    border-radius: 10px;
   
     &.citizen {
       background-image: url('./citizen-bg.jpg');
@@ -70,89 +72,6 @@
       background-image: url('./mafia-bg.jpg');
     }
 
-    &.dead::before {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        background-image: url('./dead.svg');
-        background-size: cover;
-        width: 20px;
-        height: 20px;
-    }
-
-    &.vote::before {
-      content: '';
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      background-image: url('./voted.svg');
-      background-size: cover;
-      width: 14px;
-      height: 12px;
-    }
-    //NUMBERS
-    // h4 {
-    //   position: absolute;
-    //   z-index: 3;
-    //   width: 40px;
-    //   height: 40px;
-    //   font-size: x-large;
-    //   border-radius: 50%;
-    //   color: white;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   margin: 0;
-    //   top: -7px;
-    //   left: -7px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    // }
-
-    // .red {
-    //   background: red;
-    // }
-  
-    // .black {
-    //   background: black;
-    // }
-
-    //ROLES
-    // .sheriff {
-    //   z-index: 2;
-    //   position: absolute;
-    //   background: url("sheriff.png") no-repeat;
-    //   width: 70px;
-    //   height: 70px;
-    //   bottom: -15px;
-    //   left: -25px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    // }
-  
-    // .don {
-    //   z-index: 2;
-    //   position: absolute;
-    //   background: url("don.png") no-repeat;
-    //   width: 100px;
-    //   height: 100px;
-    //   bottom: -35px;
-    //   left: -15px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    //   transform: rotate(8deg);
-  
-    // }
-  
-    // .mafia {
-    //   z-index: 2;
-    //   position: absolute;
-    //   bottom: -45px;
-    //   left: -15px;
-    //   background: url("mafia.png") no-repeat;
-    //   width: 100px;
-    //   height: 100px;
-    //   filter: drop-shadow(2px 4px 6px black);
-    // }
-
     img {
       width: 100%;
       height: 100%;
@@ -163,19 +82,41 @@
 .alive {
   transform: translateY(0);
   transition: all 500ms;
-
-  & img {
-    // filter: drop-shadow(2px 4px 6px black);
-  }
 }
 
 .dead, .vote {
   transform: translateY(30%);
   transition: all 500ms;
   position: relative;
+}
 
-  & img {
-    // filter: grayscale(100%) drop-shadow(2px 4px 6px black);
-    opacity: .5;
-  }
+
+.not-alive {
+  position: absolute;
+  top: 72px;
+  left: 14px;
+  background-size: cover;
+  z-index: 2;
+}
+
+.voted-icon {
+  width: 14px;
+  height: 12px;
+  background-image: url('./voted.svg');
+}
+
+.dead-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url('./dead.svg');
+}
+
+.background-dead-voted {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 80%;
+  background-color: rgba(31, 30, 34, .6);
+  border-radius: 10px;
 }
