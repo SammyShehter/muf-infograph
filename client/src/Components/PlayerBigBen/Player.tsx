@@ -19,9 +19,12 @@ export default function Player ({info, number}: Props.Player){
 
     return (
         <div className="player-wrapper">
+            <div className={`not-alive ${info.dead ? "dead-icon" : ""} ${info.vote ? "voted-icon" : ""}`}></div>
             <div className={`player-card citizen ${info.roles.don ? "don" : ""} ${info.roles.mafia ? "mafia" : ""} ${info.roles.sheriff ? "sheriff" : ""} ${info.dead ? "dead" : "alive"} ${info.vote ? "vote" : "noVote"}`}>
-                <div className={styleProps(info.roles)}/>
                 <img src={info.player ? info.player.image : defineHeraldRole()} alt='#'/>
+                {(info.vote || info.dead) &&
+                    <div className="background-dead-voted"></div>
+                }
             </div>
             {info.player &&
             <div className="player-bottom">
