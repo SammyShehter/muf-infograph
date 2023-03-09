@@ -118,21 +118,22 @@
 
 .not-alive {
   position: absolute;
-  top: 72px;
   left: 14px;
   background-size: cover;
   z-index: 2;
 }
 
 .voted-icon {
-  width: 14px;
-  height: 12px;
+  top: 72px;
+  width: 20px;
+  height: 18px;
   background-image: url('./voted.svg');
 }
 
 .dead-icon {
-  width: 20px;
-  height: 20px;
+  top: 68px;
+  width: 26px;
+  height: 26px;
   background-image: url('./dead.svg');
 }
 
