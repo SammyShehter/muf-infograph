@@ -1,5 +1,6 @@
 .player-wrapper {
   position: relative;
+  perspective: 1500px;
   width: 210px;
   height: 190px;
   overflow: hidden;
@@ -49,8 +50,12 @@
   }
 
   .player-card {
-    position: relative;
+    position: absolute;
     max-width: 100%;
+    top: 0;
+    left: 0;
+    transition:all .8s ease;
+    backface-visibility: hidden;
     width: 210px;
     height: 190px;
     background-size: cover;
@@ -70,6 +75,26 @@
 
     &.mafia {
       background-image: url('./mafia-bg.jpg');
+    }
+
+    &.sheriff-card {
+      background-image: url('./sheriff-card.png');
+      z-index: 2;
+    }
+
+    &.citizen-card {
+      background-image: url('./citizen-card.png');
+      z-index: 2;
+    }
+
+    &.don-card {
+      background-image: url('./don-card.png');
+      z-index: 2;
+    }
+
+    &.mafia-card {
+      background-image: url('./mafia-card.png');
+      z-index: 2;
     }
 
     img {
@@ -109,6 +134,18 @@
   width: 20px;
   height: 20px;
   background-image: url('./dead.svg');
+}
+
+.side--front{
+  transform: rotateY(-180deg);
+}
+
+.side-back{
+  transform: rotateY(180deg);
+}
+
+.side--back{
+  transform: rotateY(0);
 }
 
 .background-dead-voted {

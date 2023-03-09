@@ -135,6 +135,14 @@ export default function Inputs({
                     roomState={roomState}
                     checked={roomState[index].vote}
                 />
+                <Input
+                    name="rotate"
+                    rName="Крутилка"
+                    index={index}
+                    stateChange={playerStatus}
+                    roomState={roomState}
+                    checked={roomState[index].rotate}
+                />
                 {populateOptions(index)}
             </div>
         ))
