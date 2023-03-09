@@ -15,9 +15,11 @@ export type  Unpopulated_PlayerInfo = {
     dead: boolean
     vote: boolean
     player: string
+    rotate: boolean
 }
 
 export type  Populated_PlayerInfo = {
+    rotate: boolean
     roles: Roles
     dead: boolean
     vote: boolean

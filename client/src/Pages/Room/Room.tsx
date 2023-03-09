@@ -77,11 +77,11 @@ function Room() {
     if (!state.length) return <FullLoader />
 
     return (
-        <>
+        <div className="qqq">
             <div className="backgroundBlur">
                 <div className="App">{renderPlayers(state)}</div>
             </div>
-        </>
+        </div>
     )
 }
 
